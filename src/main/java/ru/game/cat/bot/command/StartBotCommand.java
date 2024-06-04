@@ -2,14 +2,19 @@ package ru.game.cat.bot.command;
 
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendSticker;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.utils.StickersCatFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.List;
 
 @Component
 public class StartBotCommand extends AbstractBotCommand {
