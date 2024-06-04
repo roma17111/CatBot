@@ -2,6 +2,7 @@ package ru.game.cat.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.telegram.telegrambots.meta.api.methods.send.SendSticker;
 
 import java.time.LocalDateTime;
 
@@ -60,6 +61,10 @@ public class Cat {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "inventory_id")
     private Inventory inventory;
+
+    @OneToOne
+    @JoinColumn(name = "sticker_id")
+    private Sticker sticker;
 
     public String getPercent() {
         return String.valueOf(xpFromLevel / necessary_xp_for_up * HUNDRED);

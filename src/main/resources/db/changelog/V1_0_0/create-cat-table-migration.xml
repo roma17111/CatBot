@@ -57,6 +57,8 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="sticker_id" type="BIGINT"/>
+
             <column name="inventory_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
@@ -80,6 +82,12 @@
                                  constraintName="INVENTORY_FOREIGN_KEY"
                                  referencedTableName="inventories"
                                  referencedColumnNames="inventory_id"/>
+
+        <addForeignKeyConstraint baseTableName="cats"
+                                 baseColumnNames="sticker_id"
+                                 constraintName="STICKERS_FOREIGN_KEY"
+                                 referencedTableName="stickers"
+                                 referencedColumnNames="sticker_id"/>
 
 
     </changeSet>
