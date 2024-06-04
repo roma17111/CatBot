@@ -1,5 +1,6 @@
 package ru.game.cat.service;
 
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class CatService {
     private final CatNameFactory catNameFactory;
     private static final String USER_PREFIX = "@";
 
-    public void registerCat(@NonNull Update update) {
+    public Cat registerCat(@NonNull Update update) {
         Cat cat = Cat.builder()
                 .chatId(update.getMessage().getChatId())
                 .catName(catNameFactory.getName())
@@ -37,5 +38,10 @@ public class CatService {
                 .necessary_xp_for_up(100)
                 .build();
         catRepository.save(cat);
+        return cat;
+    }
+
+    public Cat findActualCat(@NonNull Update update) {
+        return catRepository.findByChatId(update.getMessage().getChatId());
     }
 }
