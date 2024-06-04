@@ -8,6 +8,8 @@ import org.telegram.telegrambots.bots.DefaultAbsSender;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
+import static org.telegram.telegrambots.meta.api.methods.ParseMode.HTML;
+
 @Component
 public class MessageSender extends DefaultAbsSender {
     protected MessageSender(DefaultBotOptions options,
@@ -19,6 +21,7 @@ public class MessageSender extends DefaultAbsSender {
     public void sendMessage(long chatId, @NonNull String text) {
         SendMessage message = SendMessage.builder()
                 .chatId(chatId)
+                .parseMode(HTML)
                 .text(text)
                 .build();
         executeAsync(message);

@@ -29,6 +29,7 @@ public class CatService {
                 .lastname(update.getMessage().getChat().getLastName())
                 .username(USER_PREFIX + update.getMessage().getChat().getUserName())
                 .regDate(LocalDateTime.now())
+                .level(1)
                 .statistics(Statistics.builder()
                         .max_happiness(100)
                         .max_satiety(100)

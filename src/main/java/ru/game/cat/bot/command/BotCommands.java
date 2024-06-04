@@ -7,7 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum BotCommands {
 
-    START("start", "Знакомство с ботом");
+    START("start", "Знакомство с ботом"),
+    CAT("cat", "Мой котейка");
 
     private final String command;
     private final String description;

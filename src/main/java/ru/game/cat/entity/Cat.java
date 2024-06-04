@@ -3,6 +3,7 @@ package ru.game.cat.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.telegram.telegrambots.meta.api.methods.send.SendSticker;
+import ru.game.cat.bot.emjy.Emojy;
 
 import java.time.LocalDateTime;
 
@@ -68,6 +69,23 @@ public class Cat {
 
     public String getPercent() {
         return String.valueOf(xpFromLevel / necessary_xp_for_up * HUNDRED);
+    }
+
+    public String getInfo() {
+        return String.format("""
+                        Мой питомец:
+                        
+                        %sКотейка %s
+                        %s Уровень %s
+                        <b>XP</b> опыт %s%%
+                        %s Баланс %s
+                        """,
+                Emojy.CAT,
+                this.catName,
+                Emojy.LEVEL,
+                getLevel(),
+                getPercent(),
+                Emojy.CAT_COINS, getCatCoins());
     }
 
 }
