@@ -1,5 +1,6 @@
 package ru.game.cat.bot.command;
 
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -10,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import ru.game.cat.bot.message.MessageSender;
+import ru.game.cat.service.CatService;
 import ru.game.cat.utils.StickersCatFactory;
 
 import java.io.File;
@@ -20,10 +22,12 @@ import java.util.List;
 public class StartBotCommand extends AbstractBotCommand {
 
     private final MessageSender messageSender;
+    private final CatService catService;
 
-    public StartBotCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, MessageSender messageSender1) {
+    public StartBotCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, MessageSender messageSender1, CatService catService) {
         super(botCommandFactory, messageSender);
         this.messageSender = messageSender1;
+        this.catService = catService;
     }
 
     @Override
@@ -42,6 +46,7 @@ public class StartBotCommand extends AbstractBotCommand {
         messageSender.sendMessage(update.getMessage().getChatId(),
                 "Добро пожаловать " + update.getMessage().getFrom().getFirstName());
         messageSender.execute(StickersCatFactory.getMainSticker(update));
+        catService.registerCat(update);
     }
 
 }
