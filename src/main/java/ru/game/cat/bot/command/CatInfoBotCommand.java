@@ -6,6 +6,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.service.CatInfoService;
 
+import static ru.game.cat.bot.emojy.Emojy.CAT_INFO_EMOJY;
+
 @Component
 public class CatInfoBotCommand extends AbstractBotCommand {
 
@@ -23,7 +25,7 @@ public class CatInfoBotCommand extends AbstractBotCommand {
 
     @Override
     public String getDescription() {
-        return BotCommands.CAT.getDescription();
+        return CAT_INFO_EMOJY + " " + BotCommands.CAT.getDescription();
     }
 
     @Override

@@ -7,7 +7,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public abstract class AbstractCallback {
 
     public abstract String getCallback();
-    public abstract String getDescription();
 
     public abstract void execute(Update update);
 }

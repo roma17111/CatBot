@@ -6,10 +6,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.service.CatService;
-import ru.game.cat.service.StickersService;
 import ru.game.cat.utils.Texts;
 
-import static ru.game.cat.bot.emjy.Emojy.SMILE;
 import static ru.game.cat.utils.Texts.ALREADY_EXISTS_CAT;
 
 @Component

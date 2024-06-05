@@ -2,7 +2,7 @@ package ru.game.cat.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import ru.game.cat.bot.emjy.Emojy;
+import ru.game.cat.bot.emojy.Emojy;
 
 import java.time.LocalDateTime;
 

@@ -3,7 +3,7 @@ package ru.game.cat.utils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import static ru.game.cat.bot.emjy.Emojy.SMILE;
+import static ru.game.cat.bot.emojy.Emojy.SMILE;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Texts {
@@ -16,4 +16,8 @@ public class Texts {
             
             А мамки почему-то нет😔           \s
             """;
+
+    public static final String INDICATORS = "Показатели";
+    public static final String BACK = "Назад";
+    public static final String STATISTICS_CAT_TEXT = "Статистика муррэя";
 }

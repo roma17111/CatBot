@@ -38,8 +38,10 @@ public class CatService {
                 .sticker(sticker)
                 .level(1)
                 .statistics(Statistics.builder()
-                        .max_happiness(HUNDRED)
-                        .max_satiety(HUNDRED)
+                        .happiness(20)
+                        .health(20)
+                        .maxHappiness(HUNDRED)
+                        .maxSatiety(HUNDRED)
                         .maxHealth(HUNDRED)
                         .build())
                 .inventory(new Inventory())
@@ -50,6 +52,12 @@ public class CatService {
     }
 
     public Cat findActualCat(@NonNull Update update) {
-        return catRepository.findByChatId(update.getMessage().getChatId());
+        long chatId;
+        if (update.hasCallbackQuery()) {
+            chatId = update.getCallbackQuery().getMessage().getChatId();
+        } else {
+            chatId = update.getMessage().getChatId();
+        }
+        return catRepository.findByChatId(chatId);
     }
 }
