@@ -22,10 +22,19 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="price" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="path" type="VARCHAR(1000)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
+        <insert tableName="stickers">
+            <column name="name"  value="Котёнок"/>
+            <column name="price"  value="0"/>
+            <column name="path"  value="stickers/cat-bomj.webp"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

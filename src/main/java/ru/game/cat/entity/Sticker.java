@@ -17,9 +17,12 @@ public class Sticker {
     @Column(name = "sticker_id")
     private long stickerId;
 
-    @Column(name = "name",nullable = false,length = 100)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "path" ,nullable = false,length = 1000)
+    @Column(name = "price", nullable = false)
+    private int price;
+
+    @Column(name = "path", nullable = false, length = 1000)
     private String path;
 }

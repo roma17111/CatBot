@@ -2,10 +2,11 @@ package ru.game.cat.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.telegram.telegrambots.meta.api.methods.send.SendSticker;
 import ru.game.cat.bot.emjy.Emojy;
 
 import java.time.LocalDateTime;
+
+import static ru.game.cat.utils.Numbers.HUNDRED;
 
 @Entity
 @Table(name = "cats")
@@ -16,7 +17,14 @@ import java.time.LocalDateTime;
 @Builder(toBuilder = true)
 public class Cat {
 
-    private static final int HUNDRED = 100;
+    private static final String CAT_INFO = """
+            Мой питомец:
+                                    
+            %s Котейка %s
+            %s Уровень %s
+            <b>XP</b> опыт %s%%
+            %s <b>CatCoins</b> %s
+            """;
 
     @Id
     @Column(name = "chat_id", nullable = false, unique = true)
@@ -72,14 +80,7 @@ public class Cat {
     }
 
     public String getInfo() {
-        return String.format("""
-                        Мой питомец:
-                        
-                        %sКотейка %s
-                        %s Уровень %s
-                        <b>XP</b> опыт %s%%
-                        %s Баланс %s
-                        """,
+        return String.format(CAT_INFO,
                 Emojy.CAT,
                 this.catName,
                 Emojy.LEVEL,
