@@ -21,7 +21,6 @@ public class Emojy {
     public static final String RAT_TAIL = "∿";
     public static final String MOUSE_PAWS = "\uD83E\uDDBF";
     public static final String TIN_CAN = "\uD83E\uDD6B";
-
     public static final String CAT_ERROR_EMOJY = "\uD83D\uDE38";
 
 }

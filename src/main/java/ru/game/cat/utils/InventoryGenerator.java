@@ -36,7 +36,7 @@ public class InventoryGenerator {
         if (inventory.getRatTail() > 0) {
             listButtons.add(InlineKeyboardButton.builder()
                     .callbackData(RAT_TAIL_CALLBACK)
-                    .callbackData(Emojy.RAT_TAIL + inventory.getRatTail())
+                    .text(Emojy.RAT_TAIL + inventory.getRatTail())
                     .build());
         }
         if (inventory.getTinCan() > 0) {
@@ -51,7 +51,8 @@ public class InventoryGenerator {
         if (listButtons.isEmpty()) {
             throw new InventoryIsEmptyException();
         }
-        long countRows = listButtons.size() / buttonsInRow;
+        long countRows = listButtons.size() / buttonsInRow + 1;
+
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
         for (int i = 0; i < countRows; i++) {

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.CallbackQueryExecutor;
+import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Inventory;
@@ -27,7 +28,7 @@ public class InventoryService implements CallbackQueryExecutor {
             var markup = inventoryGenerator.generateKeyboard();
             messageSender.editMessageWithKeyboard(update, Texts.INVENTORY_CAT_TEXT, markup);
         } catch (InventoryIsEmptyException e) {
-            messageSender.sendMessageDialog(update, e.getMessage());
+            messageSender.sendMessageDialog(update, Emojy.CAT_ERROR_EMOJY + " " + e.getMessage());
         }
     }
 }

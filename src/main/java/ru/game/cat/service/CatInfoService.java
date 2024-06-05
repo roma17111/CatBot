@@ -51,6 +51,7 @@ public class CatInfoService implements KeyboardGenerator, CallbackQueryExecutor 
         inventory.setCallbackData(Callbacks.INVENTORY_CALLBACK);
         inventory.setText(Emojy.CAT_THINGS_EMOJY + " " + Texts.INVENTORY_CAT_TEXT);
         row1.add(statistics);
+        row2.add(inventory);
         rows.add(row1);
         rows.add(row2);
         markup.setKeyboard(rows);
