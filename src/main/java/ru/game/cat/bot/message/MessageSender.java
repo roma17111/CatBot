@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultAbsSender;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
+import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import static org.telegram.telegrambots.meta.api.methods.ParseMode.HTML;
 
@@ -56,5 +58,18 @@ public class MessageSender extends DefaultAbsSender {
                 .replyMarkup(keyboard)
                 .build();
         executeAsync(message);
+    }
+
+    public void sendMessageDialog(@NonNull Update update,
+                                  @NonNull String text) {
+        AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery();
+        answerCallbackQuery.setText(text);
+        answerCallbackQuery.setShowAlert(true);
+        answerCallbackQuery.setCallbackQueryId(update.getCallbackQuery().getId());
+        try {
+            execute(answerCallbackQuery);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

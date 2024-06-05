@@ -1,7 +1,6 @@
 bot:
   username: ${BOT_USERNAME:cat_test_bot}
   token: ${BOT_TOKEN:7163221375:AAFsAoG3Bz-jUiQyWx3ky9uBKcke8yd3Q2M}
-
 spring:
   liquibase:
     enabled: true

@@ -17,5 +17,11 @@ public class Emojy {
     public static final String SATIETY_EMOJY = "\uD83C\uDF5B";
     public static final String HAPPY_EMOJY = "\uD83D\uDE0A";
     public static final String CAT_STEPS = "\uD83D\uDC3E";
+    public static final String CAT_THINGS_EMOJY = "\uD83D\uDCE6";
+    public static final String RAT_TAIL = "∿";
+    public static final String MOUSE_PAWS = "\uD83E\uDDBF";
+    public static final String TIN_CAN = "\uD83E\uDD6B";
+
+    public static final String CAT_ERROR_EMOJY = "\uD83D\uDE38";
 
 }
