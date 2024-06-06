@@ -25,5 +25,6 @@ public class Emojy {
     public static final String MEDICINE_ERROR_EMOJY = "\uD83D\uDE91";
     public static final String MILK_EMOJY = "\uD83E\uDD5B";
     public static final String CAT_HUNGRY_EMOJY = "\uD83D\uDE0B\uD83C\uDF7D\uFE0F";
+    public static final String CLOCK_EMOJY = "⏰";
 
 }

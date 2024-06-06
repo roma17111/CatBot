@@ -37,4 +37,7 @@ public class Texts {
     public static final String CAT_HUNGRY_TEXT = """
             Котик сильно проголодался
             """;
+    public static final String MILK_INFO_TEXT = """
+            Центр кормления молочком для <b>котят</b>
+            """;
 }

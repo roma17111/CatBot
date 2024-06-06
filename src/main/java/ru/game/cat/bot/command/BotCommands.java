@@ -8,7 +8,8 @@ import lombok.Getter;
 public enum BotCommands {
 
     START("start", "Знакомство с ботом"),
-    CAT("cat", "Мой котейка");
+    CAT("cat", "Мой котейка"),
+    MILK("milk", "Молочко");
 
     private final String command;
     private final String description;
