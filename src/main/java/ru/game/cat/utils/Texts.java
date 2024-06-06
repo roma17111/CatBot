@@ -24,4 +24,8 @@ public class Texts {
     public static final String INVENTORY_CAT_TEXT = "Мурр-штуки";
     public static final String HEALTHY_TEXT = "Важ котофей полностью здоров";
     public static final String SATIETY_TEXT = "Важ мурр-муррей не голоден";
+
+    public static final String NO_RAT_TAIL_TEXT = "У кошары недостаточно крысиных хвостиков";
+    public static final String NO_MOUSE_PAWS_TEXT = "У кошары недостаточно мышиных лапок";
+    public static final String NO_TIN_CAN_TEXT = "У кошары недостаточно консервных банок";
 }

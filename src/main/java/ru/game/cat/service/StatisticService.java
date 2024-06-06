@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import ru.game.cat.bot.CallbackQueryExecutor;
+import ru.game.cat.bot.callback.CallbackQueryExecutor;
 import ru.game.cat.bot.callback.ButtonsFactory;
 import ru.game.cat.bot.callback.KeyboardGenerator;
 import ru.game.cat.bot.emojy.Emojy;
@@ -142,7 +142,7 @@ public class StatisticService implements KeyboardGenerator, CallbackQueryExecuto
             }
             cat.setStatistics(statistics);
             catService.save(cat);
-            long result = max - currentHappy
+            long result = max - currentHappy;
             if (result > happy) {
                 result = happy;
             }
