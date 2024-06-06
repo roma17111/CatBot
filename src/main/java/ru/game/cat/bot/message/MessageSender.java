@@ -67,7 +67,7 @@ public class MessageSender extends DefaultAbsSender {
         answerCallbackQuery.setShowAlert(true);
         answerCallbackQuery.setCallbackQueryId(update.getCallbackQuery().getId());
         try {
-            execute(answerCallbackQuery);
+            executeAsync(answerCallbackQuery);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
