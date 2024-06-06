@@ -22,4 +22,6 @@ public class Texts {
     public static final String BACK = "Назад";
     public static final String STATISTICS_CAT_TEXT = "Статистика муррэя";
     public static final String INVENTORY_CAT_TEXT = "Мурр-штуки";
+    public static final String HEALTHY_TEXT = "Важ котофей полностью здоров";
+    public static final String SATIETY_TEXT = "Важ мурр-муррей не голоден";
 }

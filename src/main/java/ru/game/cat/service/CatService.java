@@ -60,4 +60,8 @@ public class CatService {
         }
         return catRepository.findByChatId(chatId);
     }
+
+    public void save(@NonNull Cat cat) {
+        this.catRepository.save(cat);
+    }
 }
