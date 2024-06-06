@@ -22,3 +22,5 @@ spring:
   devtools:
     restart:
       enabled: false
+cron:
+  check-satiety: 0 0 * * * * #Раз в час

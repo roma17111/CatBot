@@ -13,6 +13,7 @@ import ru.game.cat.repository.CatRepository;
 import ru.game.cat.utils.CatNameFactory;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static ru.game.cat.utils.Numbers.HUNDRED;
 
@@ -40,6 +41,8 @@ public class CatService {
                 .statistics(Statistics.builder()
                         .happiness(20)
                         .health(20)
+                        .satiety(20)
+                        .satietyPerTime(20)
                         .maxHappiness(HUNDRED)
                         .maxSatiety(HUNDRED)
                         .maxHealth(HUNDRED)
@@ -63,5 +66,9 @@ public class CatService {
 
     public void save(@NonNull Cat cat) {
         this.catRepository.save(cat);
+    }
+
+    public List<Cat> findAll() {
+        return catRepository.getAllCats();
     }
 }

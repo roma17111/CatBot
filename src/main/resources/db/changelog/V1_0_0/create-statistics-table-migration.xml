@@ -42,7 +42,9 @@
                 <constraints nullable="false"/>
             </column>
 
-
+            <column name="satiety_per_time" type="INT" defaultValue="20">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
     </changeSet>

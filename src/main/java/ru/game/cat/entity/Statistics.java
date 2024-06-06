@@ -40,17 +40,20 @@ public class Statistics {
     @Column(name = "max_happiness", nullable = false)
     private int maxHappiness = MAX;
 
+    @Column(name = "satiety_per_time", nullable = false)
+    private int satietyPerTime;
+
     public String getInfo() {
         return String.format("""
-                <b>Показатели кошкатуна</b>
-                
-                %s Здоровье %s/%s
-                %s Сытость %s/%s
-                %s Уровень счастья %s/%s
-                """,
-                Emojy.HEALTH_EMOJY,this.getHealth(),this.getMaxHealth(),
-                Emojy.SATIETY_EMOJY,this.getSatiety(),this.getMaxSatiety(),
-                Emojy.HAPPY_EMOJY,this.getHappiness(),this.getMaxHappiness()
-                );
+                        <b>Показатели кошкатуна</b>
+                                        
+                        %s Здоровье %s/%s
+                        %s Сытость %s/%s
+                        %s Уровень счастья %s/%s
+                        """,
+                Emojy.HEALTH_EMOJY, this.getHealth(), this.getMaxHealth(),
+                Emojy.SATIETY_EMOJY, this.getSatiety(), this.getMaxSatiety(),
+                Emojy.HAPPY_EMOJY, this.getHappiness(), this.getMaxHappiness()
+        );
     }
 }

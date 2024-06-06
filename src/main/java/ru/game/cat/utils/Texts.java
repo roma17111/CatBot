@@ -33,4 +33,8 @@ public class Texts {
     public static final String NEED_MEDICINE_TEXT = Emojy.MEDICINE_ERROR_EMOJY + " Дружище, " +
             "кажется ты сильно расклеился, быстро встать на лапы тебе поможет " + Emojy.MILK_EMOJY +
             " плашка молока" + SMILE;
+
+    public static final String CAT_HUNGRY_TEXT = """
+            Котик сильно проголодался
+            """;
 }
