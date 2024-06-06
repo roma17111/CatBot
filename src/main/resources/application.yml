@@ -1,4 +1,7 @@
 bot:
+  inventory:
+    max-bad-food-satiety: 15
+    max-minus-xp-bad-food: 10
   username: ${BOT_USERNAME:cat_test_bot}
   token: ${BOT_TOKEN:7163221375:AAFsAoG3Bz-jUiQyWx3ky9uBKcke8yd3Q2M}
 spring:

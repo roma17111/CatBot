@@ -72,4 +72,16 @@ public class MessageSender extends DefaultAbsSender {
             throw new RuntimeException(e);
         }
     }
+
+    public void sendAlert(@NonNull Update update,
+                                  @NonNull String text) {
+        AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery();
+        answerCallbackQuery.setText(text);
+        answerCallbackQuery.setCallbackQueryId(update.getCallbackQuery().getId());
+        try {
+            executeAsync(answerCallbackQuery);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

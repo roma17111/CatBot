@@ -1,4 +1,4 @@
-package ru.game.cat.bot.callback.if_preset;
+package ru.game.cat.bot.callback.click;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import ru.game.cat.bot.callback.AbstractCallback;
 
 import static ru.game.cat.bot.callback.Callbacks.BACK_CALLBACK_TO_CAT_INFO;
 
-@Component
+@Component("backToCatInfoCallback")
 public class BackToCatInfoCallback extends AbstractCallback {
 
     private final CallbackQueryExecutor callbackQueryExecutor;

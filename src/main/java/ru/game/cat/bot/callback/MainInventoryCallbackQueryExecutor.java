@@ -1,7 +1,11 @@
 package ru.game.cat.bot.callback;
 
 
-public interface MainInventoryCallbackQueryExecutor extends CallbackQueryExecutor {
+import lombok.NonNull;
+import org.telegram.telegrambots.meta.api.objects.Update;
+
+public interface MainInventoryCallbackQueryExecutor  {
 
 
+    void executeMainInventory(@NonNull Update update);
 }
