@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.callback.MainInventoryCallbackQueryExecutor;
 import ru.game.cat.bot.config.InventoryConfig;
 import ru.game.cat.bot.emojy.Emojy;
+import ru.game.cat.bot.message.MessageFactory;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.exceptions.SatietyException;
@@ -30,16 +31,22 @@ public class RatTail implements MainInventoryCallbackQueryExecutor {
     private final InventoryService inventoryService;
     private final StatisticService statisticService;
     private final InventoryConfig inventoryConfig;
+    private final MessageFactory messageFactory;
 
     @Override
     @Transactional
     public void executeMainInventory(@NonNull Update update) {
         try {
             Cat cat = catService.findActualCat(update);
+            int h = cat.getStatistics().getHealth();
+            if (h <= 5) {
+                messageFactory.needToMedicDialog(update);
+                return;
+            }
             inventoryService.minusRatTail(cat, 1);
             long random = RandomUtils.getRandomNumber(MAX_ROTATION_INVENTORY);
             StringBuilder builder = new StringBuilder();
-            if (random > 150 && cat.getStatistics().getHealth() > 0) {
+            if (random > 150) {
                 String health = statisticService.minusHealth(cat, (int) RandomUtils.getRandomNumber(inventoryConfig.getMaxMinusXpBadFood()));
                 builder.append(Emojy.HEALTH_EMOJY).append(health).append(" ");
             }

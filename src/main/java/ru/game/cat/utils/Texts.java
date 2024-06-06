@@ -2,6 +2,7 @@ package ru.game.cat.utils;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import ru.game.cat.bot.emojy.Emojy;
 
 import static ru.game.cat.bot.emojy.Emojy.SMILE;
 
@@ -28,4 +29,8 @@ public class Texts {
     public static final String NO_RAT_TAIL_TEXT = "У кошары недостаточно крысиных хвостиков";
     public static final String NO_MOUSE_PAWS_TEXT = "У кошары недостаточно мышиных лапок";
     public static final String NO_TIN_CAN_TEXT = "У кошары недостаточно консервных банок";
+
+    public static final String NEED_MEDICINE_TEXT = Emojy.MEDICINE_ERROR_EMOJY + " Дружище, " +
+            "кажется ты сильно расклеился, быстро встать на лапы тебе поможет " + Emojy.MILK_EMOJY +
+            " плашка молока" + SMILE;
 }

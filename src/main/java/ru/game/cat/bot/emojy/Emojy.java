@@ -22,5 +22,7 @@ public class Emojy {
     public static final String MOUSE_PAWS = "\uD83E\uDDBF";
     public static final String TIN_CAN = "\uD83E\uDD6B";
     public static final String CAT_ERROR_EMOJY = "\uD83D\uDE38";
+    public static final String MEDICINE_ERROR_EMOJY = "\uD83D\uDE91";
+    public static final String MILK_EMOJY = "\uD83E\uDD5B";
 
 }

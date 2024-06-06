@@ -42,7 +42,7 @@ public class InventoryService implements CallbackQueryExecutor, KeyboardGenerato
         InventoryGenerator inventoryGenerator = new InventoryGenerator(inventory);
         try {
             var markup = inventoryGenerator.generateKeyboard();
-            messageSender.editMessageWithKeyboard(update, Texts.INVENTORY_CAT_TEXT, markup);
+            messageSender.editMessageWithKeyboard(update, Emojy.CAT_STEPS+" "+Texts.INVENTORY_CAT_TEXT, markup);
         } catch (InventoryIsEmptyException e) {
             messageSender.editMessageWithKeyboard(update,
                     Emojy.CAT_ERROR_EMOJY + " " + e.getMessage(),
