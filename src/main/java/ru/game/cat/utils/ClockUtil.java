@@ -21,15 +21,15 @@ public class ClockUtil {
                 minutes.trim().endsWith("12") ||
                 minutes.trim().endsWith("13") ||
                 minutes.trim().endsWith("14")) {
-            return "минут";
+            return "мин";
         }
         if (minutes.trim().endsWith("2") ||
                 minutes.trim().endsWith("3") ||
                 minutes.trim().endsWith("4")) {
-            return "минуты";
+            return "мин";
         }
         if (minutes.trim().endsWith("1")) {
-            return "минуту";
+            return "мин";
         } else {
             return "";
         }
@@ -46,15 +46,15 @@ public class ClockUtil {
                 sec.trim().endsWith("12") ||
                 sec.trim().endsWith("13") ||
                 sec.trim().endsWith("14")) {
-            return "секунд";
+            return "сек";
         }
         if (sec.trim().endsWith("2") ||
                 sec.trim().endsWith("3") ||
                 sec.trim().endsWith("4")) {
-            return "секунды";
+            return "сек";
         }
         if (sec.trim().endsWith("1")) {
-            return "секунду";
+            return "сек";
         } else {
             return "";
         }
@@ -71,15 +71,17 @@ public class ClockUtil {
                 hours.trim().endsWith("12") ||
                 hours.trim().endsWith("13") ||
                 hours.trim().endsWith("14")) {
-            return "часов";
+            return "ч";
         }
         if (hours.trim().endsWith("2") ||
                 hours.trim().endsWith("3") ||
                 hours.trim().endsWith("4")) {
-            return "часа";
+            return "ч";
         }
-        if (hours.trim().endsWith("1")) {
-            return "час";
+        if (
+                hours.trim().endsWith("1")
+        ) {
+            return "ч";
         } else {
             return "";
         }
@@ -91,14 +93,15 @@ public class ClockUtil {
         long minute = Duration.between(start, end).toMinutes();
         long seconds = Duration.between(start, end).toSeconds();
         StringBuilder result = new StringBuilder();
-
         if (hour > 0) {
-            result.append(hour).append(" ").append(correctHours(String.valueOf(hour)));
+            result.append(hour).append(" ").append(correctHours(String.valueOf(hour))).append(" ");
+            minute = minute % 60;
+            seconds = seconds % 60;
         }
         if (minute > 0 && minute < 60) {
-            result.append(minute).append(" ").append(validCorrectMinutes(String.valueOf(hour)));
+            result.append(minute).append(" ").append(validCorrectMinutes(String.valueOf(hour))).append(" ");
         }
-        if (seconds < 60) {
+        if (minute == 0 && hour == 0 && seconds < 60) {
             result.append(seconds).append(" ").append(validateCorrectSeconds(String.valueOf(seconds)));
         }
         return result.toString();

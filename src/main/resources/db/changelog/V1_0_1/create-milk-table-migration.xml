@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-milk-table.0" author="Roman Yakimenko">
+
+        <preConditions>
+            <not>
+                <tableExists tableName="milk_bonuses"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="milk_bonuses">
+            <column name="milk_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="check_date" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="amount" type="INT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="period_per_hour" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="satiety" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="health" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>

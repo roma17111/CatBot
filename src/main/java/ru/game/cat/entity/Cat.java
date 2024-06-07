@@ -75,6 +75,10 @@ public class Cat {
     @JoinColumn(name = "sticker_id")
     private Sticker sticker;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "milk_id")
+    private MilkBonus milkBonus;
+
     public String getPercent() {
         return String.valueOf(xpFromLevel / necessary_xp_for_up * HUNDRED);
     }

@@ -16,6 +16,7 @@ public interface CatRepository extends JpaRepository<Cat, Long> {
             left join fetch c.inventory
             left join fetch c.statistics
             left join fetch c.sticker
+            left join fetch c.milkBonus
             where c.chatId = :chat_id
             """)
     Cat findByChatId(@Param("chat_id") long chatId);
@@ -25,6 +26,7 @@ public interface CatRepository extends JpaRepository<Cat, Long> {
             left join fetch c.inventory
             left join fetch c.statistics
             left join fetch c.sticker
+            left join fetch c.milkBonus
             """)
     List<Cat> getAllCats();
 }

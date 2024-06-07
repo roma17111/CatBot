@@ -62,13 +62,11 @@
             <column name="inventory_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-
         </createTable>
 
         <createIndex tableName="cats" indexName="CATS_ID">
             <column name="chat_id" type="BIGINT"/>
         </createIndex>
-
 
 
         <addForeignKeyConstraint baseTableName="cats"
@@ -88,6 +86,8 @@
                                  constraintName="STICKERS_FOREIGN_KEY"
                                  referencedTableName="stickers"
                                  referencedColumnNames="sticker_id"/>
+
+
 
 
     </changeSet>

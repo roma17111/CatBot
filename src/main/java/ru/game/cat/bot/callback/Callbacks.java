@@ -14,4 +14,5 @@ public class Callbacks {
     public static final String RAT_TAIL_CALLBACK = "RAT_TAIL_CALLBACK";
     public static final String MOUSE_PAWS_CALLBACK = "MOUSE_PAWS_CALLBACK";
     public static final String TIN_CAN_CALLBACK = "TIN_CAN_CALLBACK";
+    public static final String GET_MILK_BONUS_CALLBACK = "GET_MILK_BONUS_CALLBACK";
 }

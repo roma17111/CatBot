@@ -8,6 +8,7 @@ import org.telegram.telegrambots.bots.DefaultAbsSender;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -29,6 +30,15 @@ public class MessageSender extends DefaultAbsSender {
                 .chatId(chatId)
                 .parseMode(HTML)
                 .text(text)
+                .build();
+        executeAsync(message);
+    }
+
+    @SneakyThrows
+    public void deleteMessage(long chatId,long messageId) {
+        DeleteMessage message = DeleteMessage.builder()
+                .chatId(chatId)
+                .messageId((int) messageId)
                 .build();
         executeAsync(message);
     }
@@ -60,6 +70,19 @@ public class MessageSender extends DefaultAbsSender {
         executeAsync(message);
     }
 
+    @SneakyThrows
+    public void editMessage(Update update,
+                            @NonNull String text) {
+        EditMessageText message = EditMessageText.builder()
+                .chatId(update.getCallbackQuery().getMessage().getChatId())
+                .messageId(update.getCallbackQuery().getMessage().getMessageId())
+                .parseMode(HTML)
+                .replyMarkup(null)
+                .text(text)
+                .build();
+        executeAsync(message);
+    }
+
     public void sendMessageDialog(@NonNull Update update,
                                   @NonNull String text) {
         AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery();
@@ -74,7 +97,7 @@ public class MessageSender extends DefaultAbsSender {
     }
 
     public void sendAlert(@NonNull Update update,
-                                  @NonNull String text) {
+                          @NonNull String text) {
         AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery();
         answerCallbackQuery.setText(text);
         answerCallbackQuery.setCallbackQueryId(update.getCallbackQuery().getId());

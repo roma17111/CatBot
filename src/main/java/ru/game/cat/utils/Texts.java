@@ -40,4 +40,5 @@ public class Texts {
     public static final String MILK_INFO_TEXT = """
             Центр кормления молочком для <b>котят</b>
             """;
+    public static final String DRINK_MILK_TEXT = "Вылакать молочко";
 }
