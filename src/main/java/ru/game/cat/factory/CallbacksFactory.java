@@ -6,6 +6,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CallbacksFactory {
 
+    public static final String TAKE_LOOT_YARD_CALLBACK = "TAKE_LOOT_YARD_CALLBACK";
+    public static final String TEN_MINUTES_YARD_CALLBACK = "TEN_MINUTES_YARD_CALLBACK";
+    public static final String THIRTY_MINUTES_YARD_CALLBACK = "THIRTY_MINUTES_YARD_CALLBACK";
+    public static final String HOUR_YARD_CALLBACK = "HOUR_YARD_CALLBACK";
+
     public static final String BACK_CALLBACK_TO_CAT_INFO = "BAC_CAT_MAIN_CALLBACK";
     public static final String STATISTICS_CALLBACK = "STATISTICS_CALLBACK";
 

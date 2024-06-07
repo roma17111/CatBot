@@ -1,4 +1,4 @@
-package ru.game.cat.service;
+package ru.game.cat.service.inventory;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -15,6 +15,7 @@ import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Inventory;
 import ru.game.cat.exceptions.InventoryIsEmptyException;
+import ru.game.cat.service.CatService;
 import ru.game.cat.utils.InventoryGenerator;
 import ru.game.cat.utils.Texts;
 

@@ -29,5 +29,11 @@ public class Emojy {
     public static final String TONGUES_EMOJY = "\uD83D\uDC45";
     public static final String CENTER_MILK_EMOJY = "\uD83C\uDFE0❤\uFE0F";
     public static final String DOT_EMOJY = "•";
-
+    public static final String LOVE_CAT = "\uD83D\uDE3B";
+    public static final String EMOJY_TREE_ONE = "\uD83C\uDFDE\uFE0F";
+    public static final String SUNNY_EMOJY = "☀\uFE0F";
+    public static final String YARD_TREE_EMOJY = "\uD83C\uDF32";
+    public static final String GOOD_LUCK_YARD_EMOJY = "\uD83D\uDE0E\uD83D\uDC4C\uD83D\uDD25";
+    public static final String GET_LOOT_EMOJY = "⋆\uD83D\uDC3E°";
+    public static final String SEARCH_EMOJY = "\uD83D\uDD0E";
 }

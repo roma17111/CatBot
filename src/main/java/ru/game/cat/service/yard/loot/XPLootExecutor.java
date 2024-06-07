@@ -1,4 +1,4 @@
-package ru.game.cat.service.yard;
+package ru.game.cat.service.yard.loot;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

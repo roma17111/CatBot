@@ -2,7 +2,6 @@ package ru.game.cat.service.inventory;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -14,7 +13,6 @@ import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.exceptions.SatietyException;
 import ru.game.cat.service.CatService;
-import ru.game.cat.service.InventoryService;
 import ru.game.cat.service.StatisticService;
 import ru.game.cat.utils.RandomUtils;
 

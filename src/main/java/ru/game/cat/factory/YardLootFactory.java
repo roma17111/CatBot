@@ -3,7 +3,7 @@ package ru.game.cat.factory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-import ru.game.cat.service.yard.LootExecutor;
+import ru.game.cat.service.yard.loot.LootExecutor;
 
 import java.util.List;
 

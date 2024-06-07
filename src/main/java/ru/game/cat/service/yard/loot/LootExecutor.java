@@ -1,4 +1,4 @@
-package ru.game.cat.service.yard;
+package ru.game.cat.service.yard.loot;
 
 import lombok.NonNull;
 import org.telegram.telegrambots.meta.api.objects.Update;

@@ -12,7 +12,6 @@ import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.exceptions.SatietyException;
 import ru.game.cat.service.CatService;
-import ru.game.cat.service.InventoryService;
 import ru.game.cat.service.StatisticService;
 import ru.game.cat.utils.RandomUtils;
 

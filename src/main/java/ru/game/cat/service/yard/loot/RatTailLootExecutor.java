@@ -1,11 +1,11 @@
-package ru.game.cat.service.yard;
+package ru.game.cat.service.yard.loot;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.enums.Inventories;
-import ru.game.cat.service.InventoryService;
+import ru.game.cat.service.inventory.InventoryService;
 import ru.game.cat.utils.Texts;
 
 @Component

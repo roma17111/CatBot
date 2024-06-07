@@ -1,4 +1,7 @@
 bot:
+  yard:
+    start-max-xp: 6
+    start-max-loot: 2
   inventory:
     max-bad-food-satiety: 15
     max-minus-xp-bad-food: 10

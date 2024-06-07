@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.enums.Inventories;
 
-import static ru.game.cat.bot.emojy.Emojy.SMILE;
+import static ru.game.cat.bot.emojy.Emojy.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Texts {
@@ -46,6 +46,25 @@ public class Texts {
             %s Ты уже получил %s молочко\s
             %s котик
             """, Emojy.CAT_ERROR_EMOJY, Emojy.MILK_EMOJY, Emojy.CAT);
+
+    public static final String YARD_INFO_TEXT = String.format(
+            """
+                    %s
+                    Удачной прогулки, %s<b>красавчик</b>
+                    Возможно тебе сегодня повезёт и ты найдёшь что-нибудь
+                    интересное во дворе. %s%s%s
+                                
+                    %s<b>Выберите время прогулки<b/>
+                    """,
+            GOOD_LUCK_YARD_EMOJY,
+            LOVE_CAT,
+            EMOJY_TREE_ONE,
+            SUNNY_EMOJY,
+            YARD_TREE_EMOJY,
+            CAT_STEPS
+    );
+
+    public static final String TAKE_LOOT_TEXT = GET_LOOT_EMOJY + " Забрать находки";
 
     public static String formatLoot(Inventories inventories, long amount) {
         return String.format("%s %s<b>%s</b> + %d",
