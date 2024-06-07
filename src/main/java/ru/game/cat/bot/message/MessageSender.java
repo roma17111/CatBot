@@ -112,11 +112,11 @@ public class MessageSender extends DefaultAbsSender {
         }
     }
 
-    public void sendAnimation(long chatId, String path) {
+    public void sendAnimation(long chatId, String fileId) {
         SendAnimation animation = SendAnimation.builder()
                 .chatId(chatId)
                 .chatId(chatId)
-                .animation(new InputFile(new File(path)))
+                .animation(new InputFile(fileId))
                 .build();
         executeAsync(animation);
     }

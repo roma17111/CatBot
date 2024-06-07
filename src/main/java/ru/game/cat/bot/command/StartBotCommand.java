@@ -37,6 +37,7 @@ public class StartBotCommand extends AbstractBotCommand {
     @SneakyThrows
     @Override
     public void execute(Update update) {
+
         Cat cat = catService.findActualCat(update);
         if (cat == null) {
             cat = catService.registerCat(update);
