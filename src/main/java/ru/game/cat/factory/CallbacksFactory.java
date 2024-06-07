@@ -1,10 +1,10 @@
-package ru.game.cat.bot.callback;
+package ru.game.cat.factory;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Callbacks {
+public class CallbacksFactory {
 
     public static final String BACK_CALLBACK_TO_CAT_INFO = "BAC_CAT_MAIN_CALLBACK";
     public static final String STATISTICS_CALLBACK = "STATISTICS_CALLBACK";

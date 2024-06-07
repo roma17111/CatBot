@@ -3,7 +3,6 @@ package ru.game.cat.service;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -24,9 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hibernate.type.descriptor.java.IntegerJavaType.ZERO;
-import static ru.game.cat.bot.callback.Callbacks.GET_MILK_BONUS_CALLBACK;
+import static ru.game.cat.factory.CallbacksFactory.GET_MILK_BONUS_CALLBACK;
 import static ru.game.cat.bot.emojy.Emojy.CENTER_MILK_EMOJY;
-import static ru.game.cat.utils.Numbers.HUNDRED;
 
 @Service
 @RequiredArgsConstructor

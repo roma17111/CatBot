@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import ru.game.cat.bot.message.MessageSender;
+import ru.game.cat.factory.BotCommandFactory;
 
 @Component
 public abstract class AbstractBotCommand {

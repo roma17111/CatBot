@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.callback.CallbackQueryExecutor;
 import ru.game.cat.bot.callback.AbstractCallback;
 
-import static ru.game.cat.bot.callback.Callbacks.BACK_CALLBACK_TO_CAT_INFO;
+import static ru.game.cat.factory.CallbacksFactory.BACK_CALLBACK_TO_CAT_INFO;
 
 @Component("backToCatInfoCallback")
 public class BackToCatInfoCallback extends AbstractCallback {

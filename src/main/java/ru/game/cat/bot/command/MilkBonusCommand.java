@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
+import ru.game.cat.enums.BotCommands;
+import ru.game.cat.factory.BotCommandFactory;
 import ru.game.cat.service.MilkService;
 
 @Component

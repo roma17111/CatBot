@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.callback.AbstractCallback;
 import ru.game.cat.bot.callback.MainInventoryCallbackQueryExecutor;
 
-import static ru.game.cat.bot.callback.Callbacks.MOUSE_PAWS_CALLBACK;
+import static ru.game.cat.factory.CallbacksFactory.MOUSE_PAWS_CALLBACK;
 
 @Component
 public class MousePawsMainCallbackQueryExecutor extends AbstractCallback {

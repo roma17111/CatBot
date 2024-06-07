@@ -1,4 +1,4 @@
-package ru.game.cat.bot.command;
+package ru.game.cat.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.callback.CallbackQueryExecutor;
 import ru.game.cat.bot.callback.AbstractCallback;
 
-import static ru.game.cat.bot.callback.Callbacks.INVENTORY_CALLBACK;
+import static ru.game.cat.factory.CallbacksFactory.INVENTORY_CALLBACK;
 
 @Component
 public class InventoryCallback extends AbstractCallback {

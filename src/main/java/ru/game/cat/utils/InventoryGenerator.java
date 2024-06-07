@@ -2,17 +2,15 @@ package ru.game.cat.utils;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import ru.game.cat.bot.callback.ButtonsFactory;
+import ru.game.cat.factory.ButtonsFactory;
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.exceptions.InventoryIsEmptyException;
 import ru.game.cat.entity.Inventory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static ru.game.cat.bot.callback.Callbacks.*;
+import static ru.game.cat.factory.CallbacksFactory.*;
 
 public class InventoryGenerator {
 

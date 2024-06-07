@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import ru.game.cat.bot.callback.CallbackQueryExecutor;
-import ru.game.cat.bot.callback.ButtonsFactory;
+import ru.game.cat.factory.ButtonsFactory;
 import ru.game.cat.bot.callback.KeyboardGenerator;
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;

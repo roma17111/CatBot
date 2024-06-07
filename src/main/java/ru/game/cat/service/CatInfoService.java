@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import ru.game.cat.bot.callback.CallbackQueryExecutor;
-import ru.game.cat.bot.callback.Callbacks;
+import ru.game.cat.factory.CallbacksFactory;
 import ru.game.cat.bot.callback.KeyboardGenerator;
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
@@ -43,11 +43,11 @@ public class CatInfoService implements KeyboardGenerator, CallbackQueryExecutor 
         List<InlineKeyboardButton> row1 = new ArrayList<>();
         List<InlineKeyboardButton> row2 = new ArrayList<>();
         InlineKeyboardButton statistics = new InlineKeyboardButton();
-        statistics.setCallbackData(Callbacks.STATISTICS_CALLBACK);
+        statistics.setCallbackData(CallbacksFactory.STATISTICS_CALLBACK);
         statistics.setText(Emojy.EMOJI_STATISTIC + " " + STATISTICS_CAT_TEXT);
 
         InlineKeyboardButton inventory = new InlineKeyboardButton();
-        inventory.setCallbackData(Callbacks.INVENTORY_CALLBACK);
+        inventory.setCallbackData(CallbacksFactory.INVENTORY_CALLBACK);
         inventory.setText(Emojy.CAT_THINGS_EMOJY + " " + Texts.INVENTORY_CAT_TEXT);
         row1.add(statistics);
         row2.add(inventory);

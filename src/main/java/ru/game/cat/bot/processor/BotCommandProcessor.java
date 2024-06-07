@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.command.AbstractBotCommand;
-import ru.game.cat.bot.command.BotCommandFactory;
+import ru.game.cat.factory.BotCommandFactory;
 
 import java.util.Map;
 

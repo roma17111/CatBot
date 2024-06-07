@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.callback.AbstractCallback;
 import ru.game.cat.bot.callback.MainInventoryCallbackQueryExecutor;
 
-import static ru.game.cat.bot.callback.Callbacks.RAT_TAIL_CALLBACK;
+import static ru.game.cat.factory.CallbacksFactory.RAT_TAIL_CALLBACK;
 
 @Component
 public class RatTailMainCallbackQueryExecutor extends AbstractCallback {

@@ -1,9 +1,10 @@
-package ru.game.cat.bot.command;
+package ru.game.cat.factory;
 
 import lombok.Getter;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
+import ru.game.cat.bot.command.AbstractBotCommand;
 
 import java.util.ArrayList;
 import java.util.HashMap;
