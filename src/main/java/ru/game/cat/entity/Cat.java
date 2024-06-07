@@ -58,7 +58,7 @@ public class Cat {
     private long xpFromLevel = 0;
 
     @Column(name = "necessary_xp_for_up", nullable = false)
-    private long necessary_xp_for_up = 100;
+    private long necessaryXpForUp = 100;
 
     @Column(name = "is_banned", nullable = false)
     private boolean isBanned = false;
@@ -84,7 +84,7 @@ public class Cat {
     private Yard yard;
 
     public String getPercent() {
-        return String.valueOf(xpFromLevel / necessary_xp_for_up * HUNDRED);
+        return String.valueOf(xpFromLevel / necessaryXpForUp * HUNDRED);
     }
 
     public String getInfo() {

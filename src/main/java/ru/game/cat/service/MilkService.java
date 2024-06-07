@@ -77,6 +77,7 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
         MilkBonus bonus = getActualMilkBonus(cat, update);
         bonus.setAmount(bonus.getAmount() + 1);
         bonus.setCheckDate(LocalDateTime.now().plusHours(bonus.getPeriodPerHour()));
+        cat.setMilkBonus(bonus);
         catService.save(cat);
     }
 
@@ -98,12 +99,14 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
         MilkBonus bonus = getActualMilkBonus(cat, update);
         var start = LocalDateTime.now();
         var end = bonus.getCheckDate();
-        long minutes = Duration.between(end, start).toMinutes();
+        long minutes = Duration.between(start, end).toMinutes();
+        if (minutes < 0) {
+            return false;
+        }
         return minutes < (cat.getMilkBonus().getPeriodPerHour() * 60L);
     }
 
-    public String takeMilk(@NonNull Update update) {
-        Cat cat = catService.findActualCat(update);
+    public String takeMilk(@NonNull Cat cat, @NonNull Update update) {
         StringBuilder builder = new StringBuilder();
         try {
             String eat = statisticService.plusSatiety(cat, cat.getMilkBonus().getSatiety());
@@ -137,14 +140,21 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
 
     @Override
     public void executeCallback(Update update) {
-        String text = takeMilk(update);
-        messageSender.sendAlert(update, text);
-        StringBuilder builder = new StringBuilder(CENTER_MILK_EMOJY + " " + Texts.MILK_INFO_TEXT);
         Cat cat = catService.findActualCat(update);
-        builder.append("\n").append("До следующей раздачи \n")
-                .append(ClockUtil.getHoursMinutesAndSeconds(LocalDateTime.now(), cat.getMilkBonus().getCheckDate()));
-        messageSender.deleteMessage(update.getCallbackQuery().getMessage().getChatId(), update.getCallbackQuery().getMessage().getMessageId());
-        bonusStickerFactory.sendCatGif(update.getCallbackQuery().getMessage().getChatId());
-        messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(), builder.toString());
+        if (!milkIsGot(cat, update)) {
+            String text = takeMilk(cat, update);
+            messageSender.sendAlert(update, text);
+            StringBuilder builder = new StringBuilder(CENTER_MILK_EMOJY + " " + Texts.MILK_INFO_TEXT);
+            builder.append("\n").append("До следующей раздачи \n")
+                    .append(ClockUtil.getHoursMinutesAndSeconds(LocalDateTime.now(), cat.getMilkBonus().getCheckDate()));
+            messageSender.deleteMessage(update.getCallbackQuery().getMessage().getChatId(), update.getCallbackQuery().getMessage().getMessageId());
+            bonusStickerFactory.sendCatGif(update.getCallbackQuery().getMessage().getChatId());
+            messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(), builder.toString());
+        } else {
+            messageSender.sendMessageDialog(update, String.format("""
+                    %s Ты уже получил %s молочко\s
+                    %s котик
+                    """, Emojy.CAT_ERROR_EMOJY, Emojy.MILK_EMOJY, Emojy.CAT));
+        }
     }
 }

@@ -49,7 +49,7 @@ public class CatService {
                         .maxHealth(HUNDRED)
                         .build())
                 .inventory(new Inventory())
-                .necessary_xp_for_up(HUNDRED)
+                .necessaryXpForUp(HUNDRED)
                 .build();
         catRepository.save(cat);
         return cat;
