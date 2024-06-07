@@ -93,7 +93,7 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
         var start = LocalDateTime.now();
         var end = bonus.getCheckDate();
         long minutes = Duration.between(end, start).toMinutes();
-        return minutes < 180;
+        return minutes < (cat.getMilkBonus().getPeriodPerHour() * 60L);
     }
 
     public String takeMilk(@NonNull Update update) {
