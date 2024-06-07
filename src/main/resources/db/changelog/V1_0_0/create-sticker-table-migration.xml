@@ -14,7 +14,7 @@
 
         <createTable tableName="stickers">
 
-            <column name="sticker_id" type="BIGINT" autoIncrement="true">
+            <column name="sticker_id" type="VARCHAR(255)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
@@ -29,9 +29,12 @@
             <column name="path" type="VARCHAR(1000)">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="file_id" type="VARCHAR(1000)"/>
         </createTable>
 
         <insert tableName="stickers">
+            <column name="sticker_id" value="FIRST_CAT_STICKER"/>
             <column name="name"  value="Котёнок"/>
             <column name="price"  value="0"/>
             <column name="path"  value="stickers/cat-bomj.webp"/>

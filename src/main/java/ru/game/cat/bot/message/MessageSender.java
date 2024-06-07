@@ -7,13 +7,17 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultAbsSender;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
+import org.telegram.telegrambots.meta.api.methods.send.SendAnimation;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.io.File;
 
 import static org.telegram.telegrambots.meta.api.methods.ParseMode.HTML;
 
@@ -35,7 +39,7 @@ public class MessageSender extends DefaultAbsSender {
     }
 
     @SneakyThrows
-    public void deleteMessage(long chatId,long messageId) {
+    public void deleteMessage(long chatId, long messageId) {
         DeleteMessage message = DeleteMessage.builder()
                 .chatId(chatId)
                 .messageId((int) messageId)
@@ -106,5 +110,14 @@ public class MessageSender extends DefaultAbsSender {
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void sendAnimation(long chatId, String path) {
+        SendAnimation animation = SendAnimation.builder()
+                .chatId(chatId)
+                .chatId(chatId)
+                .animation(new InputFile(new File(path)))
+                .build();
+        executeAsync(animation);
     }
 }

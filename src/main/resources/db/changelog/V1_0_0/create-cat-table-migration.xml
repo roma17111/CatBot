@@ -57,7 +57,7 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="sticker_id" type="BIGINT"/>
+            <column name="sticker_id" type="VARCHAR(255)"/>
 
             <column name="inventory_id" type="BIGINT">
                 <constraints nullable="false"/>

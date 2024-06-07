@@ -13,6 +13,10 @@ public class RandomUtils {
     private static final int ONE = 1;
 
     public static long getRandomNumber(long max) {
-        return random.nextLong(ONE, max);
+        return getRandomNumber(ONE, max);
+    }
+
+    public static long getRandomNumber(long min, long max) {
+        return random.nextLong(min, max);
     }
 }

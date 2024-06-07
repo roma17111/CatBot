@@ -9,6 +9,7 @@ import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Inventory;
 import ru.game.cat.entity.Statistics;
 import ru.game.cat.entity.Sticker;
+import ru.game.cat.enums.StickerNames;
 import ru.game.cat.repository.CatRepository;
 import ru.game.cat.utils.CatNameFactory;
 
@@ -28,7 +29,7 @@ public class CatService {
 
     @Transactional
     public Cat registerCat(@NonNull Update update) {
-        Sticker sticker = stickersService.findById(1);
+        Sticker sticker = stickersService.findById(StickerNames.FIRST_CAT_STICKER);
         Cat cat = Cat.builder()
                 .chatId(update.getMessage().getChatId())
                 .catName(catNameFactory.getName())

@@ -2,6 +2,7 @@ package ru.game.cat.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -14,6 +15,7 @@ import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.MilkBonus;
 import ru.game.cat.exceptions.HealthyException;
 import ru.game.cat.exceptions.SatietyException;
+import ru.game.cat.factory.MilkBonusGifsFactory;
 import ru.game.cat.utils.ClockUtil;
 import ru.game.cat.utils.Texts;
 
@@ -30,9 +32,13 @@ import static ru.game.cat.bot.emojy.Emojy.CENTER_MILK_EMOJY;
 @RequiredArgsConstructor
 public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
 
+    private static final String MILK_STICKER_ID = "CAACAgIAAxkDAAICTmZisAZuHjgUmoVFePYmEFdYJGFfAALpSQACb6EZS-Eo1B33eoDBNQQ";
+
+    private final StickersService stickersService;
     private final CatService catService;
     private final StatisticService statisticService;
     private final MessageSender messageSender;
+    private final MilkBonusGifsFactory bonusStickerFactory;
 
     public MilkBonus getActualMilkBonus(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
@@ -74,7 +80,9 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
         catService.save(cat);
     }
 
+
     public void initForCommand(@NonNull Update update) {
+        stickersService.executeSticker(update, MILK_STICKER_ID);
         StringBuilder builder = new StringBuilder(CENTER_MILK_EMOJY + " " + Texts.MILK_INFO_TEXT);
         Cat cat = catService.findActualCat(update);
         if (milkIsGot(cat, update)) {
@@ -136,6 +144,7 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
         builder.append("\n").append("До следующей раздачи \n")
                 .append(ClockUtil.getHoursMinutesAndSeconds(LocalDateTime.now(), cat.getMilkBonus().getCheckDate()));
         messageSender.deleteMessage(update.getCallbackQuery().getMessage().getChatId(), update.getCallbackQuery().getMessage().getMessageId());
+        bonusStickerFactory.sendCatGif(update.getCallbackQuery().getMessage().getChatId());
         messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(), builder.toString());
     }
 }

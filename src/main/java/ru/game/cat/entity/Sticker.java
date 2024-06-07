@@ -2,6 +2,7 @@ package ru.game.cat.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ru.game.cat.enums.StickerNames;
 
 @Getter
 @Setter
@@ -13,9 +14,9 @@ import lombok.*;
 public class Sticker {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Enumerated(EnumType.STRING)
     @Column(name = "sticker_id")
-    private long stickerId;
+    private StickerNames stickerId;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -25,4 +26,7 @@ public class Sticker {
 
     @Column(name = "path", nullable = false, length = 1000)
     private String path;
+
+    @Column(name = "file_id",length = 1000)
+    private String fileId;
 }
