@@ -10,4 +10,5 @@
     <include file="db/changelog/V1_0_0/create-cat-table-migration.xml"/>
     <include file="db/changelog/V1_0_1/create-milk-table-migration.xml"/>
     <include file="db/changelog/V1_0_1/add-milk-column-in-cats.xml"/>
+    <include file="db/changelog/V1_0_2/create-yerd-table-migration.xml"/>
 </databaseChangeLog>

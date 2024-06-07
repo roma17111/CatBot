@@ -79,6 +79,10 @@ public class Cat {
     @JoinColumn(name = "milk_id")
     private MilkBonus milkBonus;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "yard_id")
+    private Yard yard;
+
     public String getPercent() {
         return String.valueOf(xpFromLevel / necessary_xp_for_up * HUNDRED);
     }
