@@ -27,6 +27,7 @@ import java.util.List;
 import static org.hibernate.type.descriptor.java.IntegerJavaType.ZERO;
 import static ru.game.cat.factory.CallbacksFactory.GET_MILK_BONUS_CALLBACK;
 import static ru.game.cat.bot.emojy.Emojy.CENTER_MILK_EMOJY;
+import static ru.game.cat.utils.Texts.YOU_GOT_MILK;
 
 @Service
 @RequiredArgsConstructor
@@ -144,17 +145,13 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
         if (!milkIsGot(cat, update)) {
             String text = takeMilk(cat, update);
             messageSender.sendAlert(update, text);
-            StringBuilder builder = new StringBuilder(CENTER_MILK_EMOJY + " " + Texts.MILK_INFO_TEXT);
-            builder.append("\n").append("До следующей раздачи \n")
-                    .append(ClockUtil.getHoursMinutesAndSeconds(LocalDateTime.now(), cat.getMilkBonus().getCheckDate()));
+            String info = CENTER_MILK_EMOJY + " " + Texts.MILK_INFO_TEXT + "\n" + "До следующей раздачи \n" +
+                    ClockUtil.getHoursMinutesAndSeconds(LocalDateTime.now(), cat.getMilkBonus().getCheckDate());
             messageSender.deleteMessage(update.getCallbackQuery().getMessage().getChatId(), update.getCallbackQuery().getMessage().getMessageId());
             bonusStickerFactory.sendCatGif(update.getCallbackQuery().getMessage().getChatId());
-            messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(), builder.toString());
+            messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(), info);
         } else {
-            messageSender.sendMessageDialog(update, String.format("""
-                    %s Ты уже получил %s молочко\s
-                    %s котик
-                    """, Emojy.CAT_ERROR_EMOJY, Emojy.MILK_EMOJY, Emojy.CAT));
+            messageSender.sendMessageDialog(update, String.format(YOU_GOT_MILK));
         }
     }
 }

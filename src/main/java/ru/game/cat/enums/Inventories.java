@@ -10,7 +10,9 @@ public enum Inventories {
 
     MOUSE_PAW(Emojy.MOUSE_PAWS, "Мышиная лапка"),
     RAT_TAIL(Emojy.RAT_TAIL, "Крысиный хвостик"),
-    TIN_CAN(Emojy.TIN_CAN, "Консервная банка");
+    TIN_CAN(Emojy.TIN_CAN, "Консервная банка"),
+    XP(Emojy.LEVEL,"Опыт"),
+    CAT_COIN(Emojy.CAT_COINS, "Cat coins");
 
     private final String emoji;
     private final String name;

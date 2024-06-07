@@ -3,6 +3,7 @@ package ru.game.cat.utils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.game.cat.bot.emojy.Emojy;
+import ru.game.cat.enums.Inventories;
 
 import static ru.game.cat.bot.emojy.Emojy.SMILE;
 
@@ -14,7 +15,7 @@ public class Texts {
     public static final String REG_TEXT = """
             Я недавно родился,
             Дней 10 прошло, прозрел...
-            
+                        
             А мамки почему-то нет😔           \s
             """;
 
@@ -41,4 +42,16 @@ public class Texts {
             Центр кормления молочком для <b>котят</b>
             """;
     public static final String DRINK_MILK_TEXT = "Вылакать молочко";
+    public static final String YOU_GOT_MILK = String.format("""
+            %s Ты уже получил %s молочко\s
+            %s котик
+            """, Emojy.CAT_ERROR_EMOJY, Emojy.MILK_EMOJY, Emojy.CAT);
+
+    public static String formatLoot(Inventories inventories, long amount) {
+        return String.format("%s %s<b>%s</b> + %d",
+                Emojy.DOT_EMOJY,
+                inventories.getEmoji(),
+                inventories.getName(),
+                amount);
+    }
 }

@@ -28,5 +28,6 @@ public class Emojy {
     public static final String CLOCK_EMOJY = "⏰";
     public static final String TONGUES_EMOJY = "\uD83D\uDC45";
     public static final String CENTER_MILK_EMOJY = "\uD83C\uDFE0❤\uFE0F";
+    public static final String DOT_EMOJY = "•";
 
 }
