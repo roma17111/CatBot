@@ -97,9 +97,9 @@ public class ClockUtil {
         seconds.put("3", "секунды");
         seconds.put("4", "секунды");
         seconds.put("5", "секунд");
-        seconds.put("6", "секунды");
-        seconds.put("7", "секунды");
-        seconds.put("8", "секунды");
+        seconds.put("6", "секунд");
+        seconds.put("7", "секунд");
+        seconds.put("8", "секунд");
         seconds.put("9", "секунд");
         seconds.put("10", "секунд");
         seconds.put("11", "секунд");
