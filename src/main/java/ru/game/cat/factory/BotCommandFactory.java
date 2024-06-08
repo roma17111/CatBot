@@ -26,13 +26,10 @@ public class BotCommandFactory {
     public void addNewCommand(@NonNull BotCommand botCommand,
                               @NonNull String commandName,
                               @NonNull AbstractBotCommand command) {
-        if (enableStart) {
-            botCommands.add(botCommand);
-            return;
-        }
-        if (!commandName.equalsIgnoreCase("/start")) {
-            botCommands.add(botCommand);
-        }
+
+        /*if (!commandName.equalsIgnoreCase("/start")) {
+        }*/
+        botCommands.add(botCommand);
         mapOfCommands.put(commandName, command);
     }
 
