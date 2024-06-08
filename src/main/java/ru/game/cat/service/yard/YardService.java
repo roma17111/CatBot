@@ -10,11 +10,14 @@ import ru.game.cat.entity.Yard;
 import ru.game.cat.factory.YardLootFactory;
 import ru.game.cat.service.CatService;
 import ru.game.cat.service.yard.loot.LootExecutor;
+import ru.game.cat.service.yard.loot.MousePawsLootExecutor;
 import ru.game.cat.service.yard.loot.XPLootExecutor;
 import ru.game.cat.utils.RandomUtils;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.hibernate.type.descriptor.java.IntegerJavaType.ZERO;
 
@@ -25,6 +28,7 @@ public class YardService {
     private final CatService catService;
     private final YardLootFactory lootFactory;
     private final XPLootExecutor xpLootExecutor;
+    private final MousePawsLootExecutor pawsLootExecutor;
 
     @Value("${bot.yard.start-max-xp}")
     private int maxXp;
@@ -57,10 +61,11 @@ public class YardService {
     }
 
     public void walk(@NonNull Cat cat,
-                      int minutes) {
+                     int minutes) {
         Yard yard = cat.getYard();
         yard.setCheckDate(LocalDateTime.now().plusMinutes(minutes));
         yard.setInTheWalk(true);
+        yard.setTotalWalks(yard.getTotalWalks() + 1);
         yard.setCurrentWalkMinutes(minutes);
         yard.setTotalWalkMinutes(yard.getTotalWalkMinutes() + minutes);
         cat.setYard(yard);
@@ -78,6 +83,9 @@ public class YardService {
     public String getLoot(@NonNull Cat cat, @NonNull Update update) {
         int iterations = 0;
         long minutes = getActualYard(cat).getCurrentWalkMinutes();
+        if (minutes == 1) {
+            return pawsLootExecutor.getLoot(cat, 1);
+        }
         if (minutes <= 10) {
             iterations = 1;
         } else if (minutes == 30) {
@@ -89,14 +97,18 @@ public class YardService {
         result.append(xpLootExecutor.getLoot(update, cat, RandomUtils.getRandomNumber(getActualYard(cat).getMaxXp())))
                 .append("\n");
         var loots = lootFactory.getAllObjects();
+        List<LootExecutor> lootExecutorList = new CopyOnWriteArrayList<>();
         for (int i = 0; i < iterations; i++) {
             long randomLoot = RandomUtils.getRandomNumber(0, loots.size());
             var loot = loots.get((int) randomLoot);
-            String s = getRandomLootPosition(loot, cat);
-            loots.remove(loot);
-            if (!s.isEmpty()) {
-                result.append(s).append("\n");
+            if (!lootExecutorList.contains(loot)) {
+                lootExecutorList.add(loot);
+                String s = getRandomLootPosition(loot, cat);
+                if (!s.isEmpty()) {
+                    result.append(s).append("\n");
+                }
             }
+
         }
         return result.toString();
     }
@@ -105,7 +117,7 @@ public class YardService {
                                          @NonNull Cat cat) {
         long r = RandomUtils.getRandomNumber(200);
         String s = "";
-        if (r >= 80) {
+        if (r >= 30) {
             long randomLoots = getActualYard(cat).getMaxLoot();
             s = lootExecutor.getLoot(cat, RandomUtils.getRandomNumber(randomLoots + 1));
         }
@@ -117,11 +129,11 @@ public class YardService {
         LocalDateTime start = LocalDateTime.now();
         LocalDateTime end = yard.getCheckDate();
 
-        long minutes = Duration.between(start, end).toMinutes();
-        if (minutes <= 0L) {
+        long seconds = Duration.between(start, end).toSeconds();
+        if (seconds <= 0L) {
             return false;
         }
-        return minutes < yard.getCurrentWalkMinutes();
+        return seconds < (yard.getCurrentWalkMinutes() * 60L);
     }
 
 

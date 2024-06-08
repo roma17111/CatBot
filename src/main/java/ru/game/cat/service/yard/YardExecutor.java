@@ -4,16 +4,25 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Yard;
 import ru.game.cat.service.CatService;
 import ru.game.cat.utils.ClockUtil;
+import ru.game.cat.utils.Texts;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import static ru.game.cat.bot.emojy.Emojy.GET_LOOT_EMOJY;
 import static ru.game.cat.bot.emojy.Emojy.SEARCH_EMOJY;
+import static ru.game.cat.factory.CallbacksFactory.*;
+import static ru.game.cat.utils.Texts.FINISH_WALK_IN_YARD_TEXT;
+import static ru.game.cat.utils.Texts.TAKE_LOOT_TEXT;
 
 @Component
 @RequiredArgsConstructor
@@ -27,13 +36,62 @@ public class YardExecutor {
         Cat cat = catService.findActualCat(update);
         Yard yard = yardService.getActualYard(cat);
         if (!yard.isInTheWalk()) {
-            //Приветствие кота во дворе
-        } else if (!yardService.walkIsNotFinished(cat)) {
+            initInfoText(update);
+        } else if (yardService.walkIsNotFinished(cat)) {
             messageSender.sendMessage(update.getMessage().getChatId(),
                     getWalkText(cat));
         } else {
-            //Забрать лут
+            initFinishWalkMessage(update);
         }
+    }
+
+    public void startCatExecuteMessage(@NonNull Update update) {
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+        List<InlineKeyboardButton> row1 = new ArrayList<>();
+
+        row1.add(InlineKeyboardButton.builder()
+                .callbackData(START_LOOT_EXECUTOR)
+                .text(Texts.START_LOOT_BUTTON_TEXT)
+                .build());
+        rows.add(row1);
+        markup.setKeyboard(rows);
+
+        messageSender.sendMessageWithKeyboard(update.getMessage().getChatId(),
+                Texts.START_LOOT_CAT_TEXT,
+                markup);
+    }
+
+    private void initInfoText(@NonNull Update update) {
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+        List<InlineKeyboardButton> row1 = new ArrayList<>();
+        List<InlineKeyboardButton> row2 = new ArrayList<>();
+        List<InlineKeyboardButton> row3 = new ArrayList<>();
+
+        row1.add(InlineKeyboardButton.builder()
+                .callbackData(TEN_MINUTES_YARD_CALLBACK)
+                .text(Emojy.CLOCK_EMOJY + " 10 минут")
+                .build());
+
+        row2.add(InlineKeyboardButton.builder()
+                .callbackData(THIRTY_MINUTES_YARD_CALLBACK)
+                .text(Emojy.CLOCK_EMOJY + " 30 минут")
+                .build());
+
+        row3.add(InlineKeyboardButton.builder()
+                .callbackData(HOUR_YARD_CALLBACK)
+                .text(Emojy.CLOCK_EMOJY + " 1 час")
+                .build());
+
+        rows.add(row1);
+        rows.add(row2);
+        rows.add(row3);
+
+        markup.setKeyboard(rows);
+
+        messageSender.sendMessageWithKeyboard(update.getMessage().getChatId(),
+                Texts.YARD_INFO_TEXT, markup);
     }
 
     private String getWalkText(@NonNull Cat cat) {
@@ -45,37 +103,58 @@ public class YardExecutor {
         return String.format("""
                 %s Котик шастает по двору
                 Ему осталось гулять\s
+                                
                 %s
-                """, Emojy.CAT, ClockUtil.getHoursMinutesAndSeconds(start, end));
+                """, Emojy.CAT, Emojy.CLOCK_EMOJY + " " + ClockUtil.getHoursMinutesAndSeconds(start, end));
+    }
+
+    private void initFinishWalkMessage(@NonNull Update update) {
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+        List<InlineKeyboardButton> row1 = new ArrayList<>();
+        row1.add(InlineKeyboardButton.builder()
+                .text(TAKE_LOOT_TEXT)
+                .callbackData(TAKE_LOOT_YARD_CALLBACK)
+                .build());
+        rows.add(row1);
+        markup.setKeyboard(rows);
+
+        messageSender.sendMessageWithKeyboard(update.getMessage().getChatId(), FINISH_WALK_IN_YARD_TEXT, markup);
     }
 
     public void executeTakeLootAndFinishWalk(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
         if (!cat.getYard().isInTheWalk()) {
             messageSender.sendMessageDialog(update, Emojy.CAT_ERROR_EMOJY + " Ты уже забрал свои находки, котейка" + Emojy.SMILE);
-        } else if (!yardService.walkIsNotFinished(cat)) {
-            messageSender.sendMessageDialog(update, Emojy.CAT_ERROR_EMOJY + " Ты уже забрал свои находки, котейка" + Emojy.SMILE);
+        } else if (yardService.walkIsNotFinished(cat)) {
+            messageSender.sendMessageDialog(update, Emojy.CAT_ERROR_EMOJY + " Не так быстро, котейка. Ты ещё не вернулся с прогулки" + Emojy.SMILE);
         } else {
-            String text = SEARCH_EMOJY+" Посмотри, что ты сегодня нашёл\n\n"
+            String text = SEARCH_EMOJY + " Посмотри, что ты сегодня нашёл\n\n"
                     + yardService.getLoot(cat, update);
             yardService.finishWalk(cat);
             messageSender.deleteMessage(
                     update.getCallbackQuery().getMessage().getChatId(),
                     update.getCallbackQuery().getMessage().getMessageId()
             );
-            messageSender.editMessage(update,text);
+            messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(), text);
         }
     }
 
     public void executeWalk(@NonNull Update update, int minutes) {
         Cat cat = catService.findActualCat(update);
+        if (cat.getYard() == null) {
+            Yard yard = yardService.getActualYard(update);
+            cat.setYard(yard);
+        }
         if (cat.getYard().isInTheWalk()) {
             messageSender.sendMessageDialog(update, Emojy.CAT_ERROR_EMOJY + " Ты уже отправился на прогулку, котейка" + Emojy.SMILE);
         } else if (yardService.walkIsNotFinished(cat)) {
             messageSender.sendMessageDialog(update, Emojy.CAT_ERROR_EMOJY + " Ты ещё не вернулся, котофей, не так быстро" + Emojy.SMILE);
         } else {
             yardService.walk(cat, minutes);
-            messageSender.editMessage(update,
+            messageSender.deleteMessage(update.getCallbackQuery().getMessage().getChatId(),
+                    update.getCallbackQuery().getMessage().getMessageId());
+            messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(),
                     getWalkText(cat));
         }
 

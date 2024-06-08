@@ -31,6 +31,9 @@ public class Yard {
     @Column(name = "total_walk_minutes")
     private int totalWalkMinutes;
 
+    @Column(name = "total_walks",nullable = false)
+    private int totalWalks = 0;
+
     @Column(name = "is_in_the_walk", nullable = false)
     private boolean isInTheWalk = false;
 

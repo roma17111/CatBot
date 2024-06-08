@@ -22,7 +22,7 @@ public class Cat {
                                     
             %s Котейка %s
             %s Уровень %s
-            <b>XP</b> опыт %s%%
+            <b>XP</b> опыт %d%%
             %s <b>CatCoins</b> %s
             """;
 
@@ -83,8 +83,9 @@ public class Cat {
     @JoinColumn(name = "yard_id")
     private Yard yard;
 
-    public String getPercent() {
-        return String.valueOf(xpFromLevel / necessaryXpForUp * HUNDRED);
+    public long getPercent() {
+        double divided = (double) this.xpFromLevel / this.necessaryXpForUp;
+        return (long) (divided * HUNDRED);
     }
 
     public String getInfo() {

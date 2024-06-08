@@ -54,7 +54,7 @@ public class Texts {
                     Возможно тебе сегодня повезёт и ты найдёшь что-нибудь
                     интересное во дворе. %s%s%s
                                 
-                    %s<b>Выберите время прогулки<b/>
+                    %s<b>Выберите время прогулки</b>
                     """,
             GOOD_LUCK_YARD_EMOJY,
             LOVE_CAT,
@@ -64,6 +64,14 @@ public class Texts {
             CAT_STEPS
     );
 
+    public static final String START_LOOT_CAT_TEXT = String.format("""
+            %s А не прогуляться ли мне %s %s
+            """, CAT, QUESTION_EMOJY, THINK_EMOJY);
+
+    public static final String START_LOOT_BUTTON_TEXT = DOOR_EMOJY + " Во двор";
+
+
+    public static final String FINISH_WALK_IN_YARD_TEXT = CAT + " Ваш друг вернулся с прогулки. " + CLICK_UNDER_EMOJY;
     public static final String TAKE_LOOT_TEXT = GET_LOOT_EMOJY + " Забрать находки";
 
     public static String formatLoot(Inventories inventories, long amount) {

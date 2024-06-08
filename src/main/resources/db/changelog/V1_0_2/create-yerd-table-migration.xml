@@ -28,6 +28,10 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="total_walks" type="INT">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="is_in_the_walk" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>

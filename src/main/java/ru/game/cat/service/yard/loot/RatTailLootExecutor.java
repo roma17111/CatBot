@@ -15,7 +15,7 @@ public class RatTailLootExecutor implements LootExecutor{
     private final InventoryService inventoryService;
     @Override
     public String getLoot(@NonNull Cat cat, long amount) {
-        inventoryService.minusRatTail(cat,amount);
+        inventoryService.plusRatTail(cat,amount);
         return Texts.formatLoot(Inventories.RAT_TAIL, amount);
     }
 }

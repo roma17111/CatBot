@@ -8,6 +8,7 @@ import ru.game.cat.entity.Cat;
 import ru.game.cat.enums.BotCommands;
 import ru.game.cat.factory.BotCommandFactory;
 import ru.game.cat.service.CatService;
+import ru.game.cat.service.yard.YardExecutor;
 import ru.game.cat.utils.Texts;
 
 import static ru.game.cat.utils.Texts.ALREADY_EXISTS_CAT;
@@ -17,11 +18,13 @@ public class StartBotCommand extends AbstractBotCommand {
 
     private final MessageSender messageSender;
     private final CatService catService;
+    private final YardExecutor yardExecutor;
 
-    public StartBotCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, MessageSender messageSender1, CatService catService) {
+    public StartBotCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, MessageSender messageSender1, CatService catService, YardExecutor yardExecutor) {
         super(botCommandFactory, messageSender);
         this.messageSender = messageSender1;
         this.catService = catService;
+        this.yardExecutor = yardExecutor;
     }
 
     @Override
@@ -43,6 +46,7 @@ public class StartBotCommand extends AbstractBotCommand {
             cat = catService.registerCat(update);
             messageSender.sendMessage(update.getMessage().getChatId(), Texts.REG_TEXT);
             messageSender.sendMessage(update.getMessage().getChatId(), "Меня зовут - " + cat.getCatName());
+            yardExecutor.startCatExecuteMessage(update);
         } else {
             messageSender.sendMessage(update.getMessage().getChatId(), ALREADY_EXISTS_CAT);
         }

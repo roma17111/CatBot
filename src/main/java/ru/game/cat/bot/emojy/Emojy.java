@@ -36,4 +36,8 @@ public class Emojy {
     public static final String GOOD_LUCK_YARD_EMOJY = "\uD83D\uDE0E\uD83D\uDC4C\uD83D\uDD25";
     public static final String GET_LOOT_EMOJY = "⋆\uD83D\uDC3E°";
     public static final String SEARCH_EMOJY = "\uD83D\uDD0E";
+    public static final String CLICK_UNDER_EMOJY = "\uD83D\uDC47";
+    public static final String QUESTION_EMOJY = "❓";
+    public static final String THINK_EMOJY = "\uD83E\uDD14";
+    public static final String DOOR_EMOJY = "\uD83D\uDEAA";
 }
