@@ -89,7 +89,7 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
         stickersService.executeSticker(update, MILK_STICKER_ID);
         StringBuilder builder = new StringBuilder(CENTER_MILK_EMOJY + " " + Texts.MILK_INFO_TEXT);
         Cat cat = catService.findActualCat(update);
-        if (!sleepService.checkForCommand(cat)) {
+        if (sleepService.catIsSleep(cat)) {
             sleepService.initTimeSleep(update,cat);
             return;
         }

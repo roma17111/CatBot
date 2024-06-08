@@ -43,7 +43,7 @@ public class YardExecutor {
         stickersService.executeSticker(update, stickersService.findById(StickerNames.YARD_STICKER));
         long chatId = update.getMessage().getChatId();
         Cat cat = catService.findActualCat(update);
-        if (!sleepService.checkForCommand(cat)) {
+        if (sleepService.catIsSleep(cat)) {
             sleepService.initTimeSleep(update, cat);
             return;
         }

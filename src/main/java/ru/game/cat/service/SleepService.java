@@ -78,14 +78,6 @@ public class SleepService implements CallbackQueryExecutor {
         }
     }
 
-    public boolean checkForCommand(@NonNull Cat cat) {
-        if (catIsSleep(cat) && sleepIsNotFinished(cat)) {
-            finishSleep(cat);
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     public boolean catIsSleep(@NonNull Cat cat) {
         return getActualSleep(cat).isSleep();
