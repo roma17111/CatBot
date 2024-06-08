@@ -17,8 +17,9 @@ public class CatCoinsLootExecutor implements LootExecutor {
 
     @Override
     public String getLoot(@NonNull Cat cat, long amount) {
-        cat.setCatCoins(cat.getCatCoins() + amount);
+        var result = RandomUtils.getRandomNumber(amount * 10);
+        cat.setCatCoins(cat.getCatCoins() + result);
         catService.save(cat);
-        return Texts.formatLoot(Inventories.CAT_COIN, RandomUtils.getRandomNumber(amount * 10));
+        return Texts.formatLoot(Inventories.CAT_COIN, result);
     }
 }
