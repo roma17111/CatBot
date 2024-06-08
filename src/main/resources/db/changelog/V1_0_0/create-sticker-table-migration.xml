@@ -39,5 +39,12 @@
             <column name="price"  value="0"/>
             <column name="path"  value="stickers/cat-bomj.webp"/>
         </insert>
+
+        <insert tableName="stickers">
+            <column name="sticker_id" value="YARD_STICKER"/>
+            <column name="name"  value="Двор"/>
+            <column name="price"  value="0"/>
+            <column name="path"  value="stickers/yard/5291931816465275738.tgs"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

@@ -81,10 +81,12 @@ public class Texts {
 
     public static final String SLEEP_STREET_INFO_TEXT = Emojy.STREET_EMOJY + " Дружище, котёнок, ты можешь поспать " +
             "на улице. Выбери себе подходящее место" + SMILE;
-    public static final String SLEEP_STREET_BUTTON_TEXT = BED_EMOJY + " Поспать на крыльце";
+    public static final String SLEEP_STREET_BUTTON_TEXT = BED_EMOJY + " Поспать";
     public static final String CAT_CANT_SLEEP_TEXT = CAT_ERROR_EMOJY + " Котофяу не хочет спать. Он полон сил" + SMILE;
 
-    public static final String CAT_WALK_IN_YARD_TEXT = Emojy.CAT_ERROR_EMOJY + " Котик шляется по двору";
+    public static final String CAT_WALK_IN_YARD_TEXT = Emojy.CAT_ERROR_EMOJY + " Котик шляется по двору \n Посмотрите, не " +
+            "принёс ли он вам чего-нибудь \n" +
+            "/yard";
 
     public static String formatLoot(Inventories inventories, long amount) {
         return String.format("%s %s<b>%s</b> + %d",

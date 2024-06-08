@@ -9,9 +9,12 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
+import ru.game.cat.entity.Sticker;
 import ru.game.cat.entity.Yard;
+import ru.game.cat.enums.StickerNames;
 import ru.game.cat.service.CatService;
 import ru.game.cat.service.SleepService;
+import ru.game.cat.service.StickersService;
 import ru.game.cat.utils.ClockUtil;
 import ru.game.cat.utils.Texts;
 
@@ -19,7 +22,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ru.game.cat.bot.emojy.Emojy.GET_LOOT_EMOJY;
 import static ru.game.cat.bot.emojy.Emojy.SEARCH_EMOJY;
 import static ru.game.cat.factory.CallbacksFactory.*;
 import static ru.game.cat.utils.Texts.FINISH_WALK_IN_YARD_TEXT;
@@ -29,19 +31,23 @@ import static ru.game.cat.utils.Texts.TAKE_LOOT_TEXT;
 @RequiredArgsConstructor
 public class YardExecutor {
 
+    public static final String STICKER_YARD_PATH = "stickers/yard/5291931816465275738.tgs";
+
     private final CatService catService;
     private final YardService yardService;
     private final MessageSender messageSender;
     private final SleepService sleepService;
+    private final StickersService stickersService;
 
     public void executeCommand(@NonNull Update update) {
+        stickersService.executeSticker(update, stickersService.findById(StickerNames.YARD_STICKER));
         long chatId = update.getMessage().getChatId();
         Cat cat = catService.findActualCat(update);
         if (!sleepService.checkForCommand(cat)) {
-            sleepService.initTimeSleep(update,cat);
+            sleepService.initTimeSleep(update, cat);
             return;
         }
-        if (cat.getStatistics().getEnergy()==0) {
+        if (cat.getStatistics().getEnergy() == 0) {
             messageSender.sendMessage(chatId,
                     Texts.CAT_TYRED_SLEEP_TEXT + "\n /sleep");
             return;
