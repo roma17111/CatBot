@@ -11,6 +11,7 @@ import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Yard;
 import ru.game.cat.service.CatService;
+import ru.game.cat.service.SleepService;
 import ru.game.cat.utils.ClockUtil;
 import ru.game.cat.utils.Texts;
 
@@ -31,14 +32,25 @@ public class YardExecutor {
     private final CatService catService;
     private final YardService yardService;
     private final MessageSender messageSender;
+    private final SleepService sleepService;
 
     public void executeCommand(@NonNull Update update) {
+        long chatId = update.getMessage().getChatId();
         Cat cat = catService.findActualCat(update);
+        if (!sleepService.checkForCommand(cat)) {
+            sleepService.initTimeSleep(update,cat);
+            return;
+        }
+        if (cat.getStatistics().getEnergy()==0) {
+            messageSender.sendMessage(chatId,
+                    Texts.CAT_TYRED_SLEEP_TEXT + "\n /sleep");
+            return;
+        }
         Yard yard = yardService.getActualYard(cat);
         if (!yard.isInTheWalk()) {
             initInfoText(update);
         } else if (yardService.walkIsNotFinished(cat)) {
-            messageSender.sendMessage(update.getMessage().getChatId(),
+            messageSender.sendMessage(chatId,
                     getWalkText(cat));
         } else {
             initFinishWalkMessage(update);

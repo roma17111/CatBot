@@ -92,7 +92,7 @@ public class StatisticService implements KeyboardGenerator, CallbackQueryExecuto
         if (health < currentHealth) {
             health = currentHealth;
         }
-        return HEALTH + "-" + health;
+        return HEALTH + " -" + health;
     }
 
     public String plusSatiety(@NonNull Cat cat, int satiety) throws SatietyException {
@@ -128,7 +128,7 @@ public class StatisticService implements KeyboardGenerator, CallbackQueryExecuto
         if (satiety < currentSatiety) {
             satiety = currentSatiety;
         }
-        return SATIETY + "-" + satiety;
+        return SATIETY + " -" + satiety;
     }
 
     public String plusHappy(@NonNull Cat cat, int happy) {
@@ -164,7 +164,7 @@ public class StatisticService implements KeyboardGenerator, CallbackQueryExecuto
         if (happy < currentHappy) {
             happy = currentHappy;
         }
-        return HEALTH + "-" + happy;
+        return HEALTH + " -" + happy;
     }
 
     public String plusEnergy(@NonNull Cat cat, int energy) {
@@ -200,6 +200,6 @@ public class StatisticService implements KeyboardGenerator, CallbackQueryExecuto
         if (energy < currentEnergy) {
             energy = currentEnergy;
         }
-        return Emojy.ENERGY_EMOJY + "-" + energy;
+        return Emojy.ENERGY_EMOJY + " -" + energy;
     }
 }

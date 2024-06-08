@@ -1,7 +1,6 @@
 package ru.game.cat.bot.command;
 
-import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.Order;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.message.MessageSender;
@@ -12,7 +11,7 @@ import ru.game.cat.service.yard.YardExecutor;
 import static ru.game.cat.bot.emojy.Emojy.EMOJY_TREE_ONE;
 
 @Component
-@Order(3)
+@Order(20)
 public class YardBotCommand extends AbstractBotCommand {
 
     private final YardExecutor yardExecutor;

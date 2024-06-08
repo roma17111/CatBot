@@ -40,6 +40,7 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
     private final StatisticService statisticService;
     private final MessageSender messageSender;
     private final MilkBonusGifsFactory bonusStickerFactory;
+    private final SleepService sleepService;
 
     public MilkBonus getActualMilkBonus(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
@@ -84,15 +85,20 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
 
 
     public void initForCommand(@NonNull Update update) {
+        long chatId = update.getMessage().getChatId();
         stickersService.executeSticker(update, MILK_STICKER_ID);
         StringBuilder builder = new StringBuilder(CENTER_MILK_EMOJY + " " + Texts.MILK_INFO_TEXT);
         Cat cat = catService.findActualCat(update);
+        if (!sleepService.checkForCommand(cat)) {
+            sleepService.initTimeSleep(update,cat);
+            return;
+        }
         if (milkIsGot(cat, update)) {
             builder.append("\n").append("До следующей раздачи \n")
                     .append(Emojy.CLOCK_EMOJY).append(ClockUtil.getHoursMinutesAndSeconds(LocalDateTime.now(), cat.getMilkBonus().getCheckDate()));
-            messageSender.sendMessage(update.getMessage().getChatId(), builder.toString());
+            messageSender.sendMessage(chatId, builder.toString());
         } else {
-            messageSender.sendMessageWithKeyboard(update.getMessage().getChatId(), builder.toString(), getKeyboard());
+            messageSender.sendMessageWithKeyboard(chatId, builder.toString(), getKeyboard());
         }
     }
 

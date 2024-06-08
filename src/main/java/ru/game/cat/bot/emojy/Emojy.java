@@ -9,8 +9,8 @@ public class Emojy {
     public static final String CAT_INFO_EMOJY = "\uD83D\uDC31";
     public static final String CAT = "\uD83D\uDC31";
     public static final String SMILE = "\uD83D\uDE0A";
-    public static final String CAT_COINS= "\uD83D\uDCB0";
-    public static final String LEVEL= "⭐";
+    public static final String CAT_COINS = "\uD83D\uDCB0";
+    public static final String LEVEL = "⭐";
     public static final String EMOJI_STATISTIC = "\uD83D\uDE3B";
     public static final String BACK_EMOJY = "\uD83D\uDC49";
     public static final String HEALTH_EMOJY = "❤\uFE0F";
@@ -41,4 +41,8 @@ public class Emojy {
     public static final String THINK_EMOJY = "\uD83E\uDD14";
     public static final String DOOR_EMOJY = "\uD83D\uDEAA";
     public static final String ENERGY_EMOJY = "⚡";
+    public static final String TYRED_EMOJY = "\uD83E\uDD71";
+    public static final String ZZZ_EMOJY = "\uD83D\uDCA4";
+    public static final String BED_EMOJY = "\uD83D\uDECF\uFE0F";
+    public static final String STREET_EMOJY = "\uD83D\uDEE3\uFE0F";
 }

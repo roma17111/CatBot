@@ -9,6 +9,7 @@ import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Yard;
 import ru.game.cat.factory.YardLootFactory;
 import ru.game.cat.service.CatService;
+import ru.game.cat.service.StatisticService;
 import ru.game.cat.service.yard.loot.LootExecutor;
 import ru.game.cat.service.yard.loot.MousePawsLootExecutor;
 import ru.game.cat.service.yard.loot.XPLootExecutor;
@@ -29,6 +30,7 @@ public class YardService {
     private final YardLootFactory lootFactory;
     private final XPLootExecutor xpLootExecutor;
     private final MousePawsLootExecutor pawsLootExecutor;
+    private final StatisticService statisticService;
 
     @Value("${bot.yard.start-max-xp}")
     private int maxXp;
@@ -110,6 +112,7 @@ public class YardService {
             }
 
         }
+        statisticService.minusEnergy(cat, 10 * iterations);
         return result.toString();
     }
 
