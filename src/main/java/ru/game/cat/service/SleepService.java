@@ -77,11 +77,11 @@ public class SleepService implements CallbackQueryExecutor {
     }
 
     public boolean checkForCommand(@NonNull Cat cat) {
-        if (catIsSleep(cat) && !sleepIsNotFinished(cat)) {
+        if (catIsSleep(cat) && sleepIsNotFinished(cat)) {
             finishSleep(cat);
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -147,7 +147,7 @@ public class SleepService implements CallbackQueryExecutor {
         startSleep(cat);
         messageSender.deleteMessage(update.getCallbackQuery().getMessage().getChatId(),
                 update.getCallbackQuery().getMessage().getMessageId());
-        messageSender.editMessage(update,
+        messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(),
                 Texts.CAT_IS_SLEEP_TEXT + "\n" +
                         "Осталось спать \n" + ClockUtil.getHoursMinutesAndSeconds(start, end));
     }

@@ -77,9 +77,9 @@ public class Texts {
     public static final String CAT_TYRED_SLEEP_TEXT = TYRED_EMOJY + """
             Котичка сильно устал и хочет отдохнуть.        
             """;
-    public static final String CAT_IS_SLEEP_TEXT = BED_EMOJY + " Кошара спит, но скоро обещал проснуться" + SMILE;
+    public static final String CAT_IS_SLEEP_TEXT = BED_EMOJY + " Кошара спит, но скоро обещал проснуться" + SMILE + "\n";
 
-    public static final String SLEEP_STREET_INFO_TEXT = Emojy.STREET_EMOJY +" Дружище, котёнок, ты можешь поспать" +
+    public static final String SLEEP_STREET_INFO_TEXT = Emojy.STREET_EMOJY + " Дружище, котёнок, ты можешь поспать " +
             "на улице. Выбери себе подходящее место" + SMILE;
     public static final String SLEEP_STREET_BUTTON_TEXT = BED_EMOJY + " Поспать на крыльце";
     public static final String CAT_CANT_SLEEP_TEXT = CAT_ERROR_EMOJY + " Котофяу не хочет спать. Он полон сил" + SMILE;

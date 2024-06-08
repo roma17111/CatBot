@@ -30,11 +30,11 @@ public abstract class AbstractBotCommand {
     @PostConstruct
     public void init() {
         var commands = this.botCommandFactory.getBotCommands();
-        messageSender.execute(new DeleteMyCommands(new BotCommandScopeDefault(), "ru"));
-        messageSender.execute(new DeleteMyCommands(new BotCommandScopeDefault(), "en"));
+        messageSender.executeAsync(new DeleteMyCommands(new BotCommandScopeDefault(), "ru"));
+        messageSender.executeAsync(new DeleteMyCommands(new BotCommandScopeDefault(), "en"));
         if (commands != null && !commands.isEmpty()) {
-            messageSender.execute(new SetMyCommands(commands, new BotCommandScopeDefault(), "ru"));
-            messageSender.execute(new SetMyCommands(commands, new BotCommandScopeDefault(), "en"));
+            messageSender.executeAsync(new SetMyCommands(commands, new BotCommandScopeDefault(), "ru"));
+            messageSender.executeAsync(new SetMyCommands(commands, new BotCommandScopeDefault(), "en"));
         }
     }
 
