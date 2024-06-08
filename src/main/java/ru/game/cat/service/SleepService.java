@@ -7,6 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import ru.game.cat.bot.callback.CallbackQueryExecutor;
+import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Sleep;
@@ -19,8 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ru.game.cat.factory.CallbacksFactory.SLEEP_STREET_CALLBACK;
-import static ru.game.cat.utils.Texts.CAT_CANT_SLEEP_TEXT;
-import static ru.game.cat.utils.Texts.SLEEP_STREET_INFO_TEXT;
+import static ru.game.cat.utils.Texts.*;
 
 @Service
 @RequiredArgsConstructor
@@ -104,9 +104,15 @@ public class SleepService implements CallbackQueryExecutor {
 
     public void executeCommand(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
+        if (cat.getYard().isInTheWalk()) {
+            messageSender.sendMessage(update.getMessage().getChatId(), CAT_WALK_IN_YARD_TEXT);
+            return;
+        }
         if (isCheckSleep(cat)) {
             initNotSleep(update);
+        } else if (!sleepIsNotFinished(cat)) {
             finishSleep(cat);
+            initNotSleep(update);
         } else {
             initTimeSleep(update, cat);
         }
@@ -139,12 +145,12 @@ public class SleepService implements CallbackQueryExecutor {
     public void executeCallback(Update update) {
         Cat cat = catService.findActualCat(update);
         if (cat.getStatistics().getEnergy() >= cat.getStatistics().getMaxEnergy()) {
-            messageSender.sendMessageDialog(update,CAT_CANT_SLEEP_TEXT);
+            messageSender.sendMessageDialog(update, CAT_CANT_SLEEP_TEXT);
             return;
         }
+        startSleep(cat);
         LocalDateTime start = LocalDateTime.now();
         LocalDateTime end = getActualSleep(cat).getCheckDate();
-        startSleep(cat);
         messageSender.deleteMessage(update.getCallbackQuery().getMessage().getChatId(),
                 update.getCallbackQuery().getMessage().getMessageId());
         messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(),

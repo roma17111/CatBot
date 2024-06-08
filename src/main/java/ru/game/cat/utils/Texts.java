@@ -84,6 +84,8 @@ public class Texts {
     public static final String SLEEP_STREET_BUTTON_TEXT = BED_EMOJY + " Поспать на крыльце";
     public static final String CAT_CANT_SLEEP_TEXT = CAT_ERROR_EMOJY + " Котофяу не хочет спать. Он полон сил" + SMILE;
 
+    public static final String CAT_WALK_IN_YARD_TEXT = Emojy.CAT_ERROR_EMOJY + " Котик шляется по двору";
+
     public static String formatLoot(Inventories inventories, long amount) {
         return String.format("%s %s<b>%s</b> + %d",
                 Emojy.DOT_EMOJY,
