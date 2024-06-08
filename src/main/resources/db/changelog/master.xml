@@ -11,4 +11,5 @@
     <include file="db/changelog/V1_0_1/create-milk-table-migration.xml"/>
     <include file="db/changelog/V1_0_1/add-milk-column-in-cats.xml"/>
     <include file="db/changelog/V1_0_2/create-yerd-table-migration.xml"/>
+    <include file="db/changelog/V1_0_3/create-sleep-table-migration.xml"/>
 </databaseChangeLog>

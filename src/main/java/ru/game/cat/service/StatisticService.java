@@ -167,4 +167,39 @@ public class StatisticService implements KeyboardGenerator, CallbackQueryExecuto
         return HEALTH + "-" + happy;
     }
 
+    public String plusEnergy(@NonNull Cat cat, int energy) {
+        Statistics statistics = getActualStatistics(cat);
+        int currentEnergy = statistics.getEnergy();
+        int max = statistics.getMaxEnergy();
+        if (currentEnergy < max) {
+            statistics.setEnergy(currentEnergy + energy);
+            if (statistics.getEnergy() > max) {
+                statistics.setEnergy(max);
+            }
+            cat.setStatistics(statistics);
+            catService.save(cat);
+            long result = max - currentEnergy;
+            if (result > energy) {
+                result = energy;
+            }
+            return Emojy.ENERGY_EMOJY + " +" + result;
+        }
+        return "";
+    }
+
+    public String minusEnergy(@NonNull Cat cat, int energy) {
+        Statistics statistics = getActualStatistics(cat);
+        int currentEnergy = statistics.getEnergy();
+        int min = 0;
+        statistics.setEnergy(currentEnergy - energy);
+        if (statistics.getEnergy() < min) {
+            statistics.setEnergy(min);
+        }
+        cat.setStatistics(statistics);
+        catService.save(cat);
+        if (energy < currentEnergy) {
+            energy = currentEnergy;
+        }
+        return Emojy.ENERGY_EMOJY + "-" + energy;
+    }
 }

@@ -42,6 +42,14 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="energy" type="INT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="max_energy" type="INT" defaultValue="100">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="satiety_per_time" type="INT" defaultValue="20">
                 <constraints nullable="false"/>
             </column>

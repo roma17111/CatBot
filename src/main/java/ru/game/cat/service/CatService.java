@@ -43,6 +43,8 @@ public class CatService {
                         .happiness(20)
                         .health(20)
                         .satiety(20)
+                        .energy(20)
+                        .maxEnergy(HUNDRED)
                         .satietyPerTime(20)
                         .maxHappiness(HUNDRED)
                         .maxSatiety(HUNDRED)

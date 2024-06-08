@@ -43,6 +43,12 @@ public class Statistics {
     @Column(name = "satiety_per_time", nullable = false)
     private int satietyPerTime;
 
+    @Column(name = "energy", nullable = false)
+    private int energy = 0;
+
+    @Column(name = "max_energy", nullable = false)
+    private int maxEnergy = 0;
+
     public String getInfo() {
         return String.format("""
                         <b>Показатели кошкатуна</b>

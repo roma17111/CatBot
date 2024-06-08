@@ -83,6 +83,10 @@ public class Cat {
     @JoinColumn(name = "yard_id")
     private Yard yard;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sleep_id")
+    private Sleep sleep;
+
     public long getPercent() {
         double divided = (double) this.xpFromLevel / this.necessaryXpForUp;
         return (long) (divided * HUNDRED);

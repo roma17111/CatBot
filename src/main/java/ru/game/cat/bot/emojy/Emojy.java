@@ -40,4 +40,5 @@ public class Emojy {
     public static final String QUESTION_EMOJY = "❓";
     public static final String THINK_EMOJY = "\uD83E\uDD14";
     public static final String DOOR_EMOJY = "\uD83D\uDEAA";
+    public static final String ENERGY_EMOJY = "⚡";
 }
