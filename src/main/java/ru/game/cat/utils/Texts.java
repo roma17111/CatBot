@@ -85,7 +85,7 @@ public class Texts {
     public static final String CAT_CANT_SLEEP_TEXT = CAT_ERROR_EMOJY + " Котофяу не хочет спать. Он полон сил" + SMILE;
 
     public static final String CAT_WALK_IN_YARD_TEXT = Emojy.CAT_ERROR_EMOJY + " Котик шляется по двору \n Посмотрите, не " +
-            "принёс ли он вам чего-нибудь \n" +
+            "принёс ли он чего-нибудь \n\n" +
             "/yard";
 
     public static String formatLoot(Inventories inventories, long amount) {
