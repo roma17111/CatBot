@@ -65,7 +65,7 @@ public class Texts {
     );
 
     public static final String START_LOOT_CAT_TEXT = String.format("""
-            %s А не прогуляться ли мне %s %s
+            %s А не разведать ли обстановочку %s %s
             """, CAT, QUESTION_EMOJY, THINK_EMOJY);
 
     public static final String START_LOOT_BUTTON_TEXT = DOOR_EMOJY + " Во двор";
