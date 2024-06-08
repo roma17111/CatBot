@@ -11,6 +11,7 @@ import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Sleep;
+import ru.game.cat.entity.Sticker;
 import ru.game.cat.utils.ClockUtil;
 import ru.game.cat.utils.Texts;
 
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.game.cat.enums.StickerNames.SLEEP_STICKER;
 import static ru.game.cat.factory.CallbacksFactory.SLEEP_STREET_CALLBACK;
 import static ru.game.cat.utils.Texts.*;
 
@@ -29,7 +31,7 @@ public class SleepService implements CallbackQueryExecutor {
     private final CatService catService;
     private final StatisticService statisticService;
     private final MessageSender messageSender;
-
+    private final StickersService stickersService;
     public Sleep getActualSleep(Cat cat) {
         Sleep sleep = cat.getSleep();
         if (sleep == null) {
@@ -104,6 +106,7 @@ public class SleepService implements CallbackQueryExecutor {
 
     public void executeCommand(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
+        stickersService.executeSticker(update,stickersService.findById(SLEEP_STICKER));
         if (cat.getYard().isInTheWalk()) {
             messageSender.sendMessage(update.getMessage().getChatId(), CAT_WALK_IN_YARD_TEXT);
             return;

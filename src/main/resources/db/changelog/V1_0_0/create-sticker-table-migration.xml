@@ -46,5 +46,12 @@
             <column name="price"  value="0"/>
             <column name="path"  value="stickers/yard/5291931816465275738.tgs"/>
         </insert>
+
+        <insert tableName="stickers">
+            <column name="sticker_id" value="SLEEP_STICKER"/>
+            <column name="name"  value="Сон во дворе"/>
+            <column name="price"  value="0"/>
+            <column name="path"  value="stickers/sleep/643524467607209894.webp"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>
