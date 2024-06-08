@@ -32,6 +32,7 @@ public class SleepService implements CallbackQueryExecutor {
     private final StatisticService statisticService;
     private final MessageSender messageSender;
     private final StickersService stickersService;
+
     public Sleep getActualSleep(Cat cat) {
         Sleep sleep = cat.getSleep();
         if (sleep == null) {
@@ -80,6 +81,10 @@ public class SleepService implements CallbackQueryExecutor {
 
 
     public boolean catIsSleep(@NonNull Cat cat) {
+        if (!sleepIsNotFinished(cat)) {
+            finishSleep(cat);
+            return false;
+        }
         return getActualSleep(cat).isSleep();
     }
 
@@ -98,7 +103,7 @@ public class SleepService implements CallbackQueryExecutor {
 
     public void executeCommand(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
-        stickersService.executeSticker(update,stickersService.findById(SLEEP_STICKER));
+        stickersService.executeSticker(update, stickersService.findById(SLEEP_STICKER));
         if (cat.getYard().isInTheWalk()) {
             messageSender.sendMessage(update.getMessage().getChatId(), CAT_WALK_IN_YARD_TEXT);
             return;
