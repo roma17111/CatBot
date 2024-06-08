@@ -1,6 +1,7 @@
 package ru.game.cat.bot.command;
 
 import lombok.SneakyThrows;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.message.MessageSender;
@@ -16,6 +17,7 @@ import static ru.game.cat.enums.StickerNames.FIRST_CAT_STICKER;
 import static ru.game.cat.utils.Texts.ALREADY_EXISTS_CAT;
 
 @Component
+@Order(1)
 public class StartBotCommand extends AbstractBotCommand {
 
     private final MessageSender messageSender;

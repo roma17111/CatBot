@@ -1,4 +1,5 @@
 bot:
+  enable-start-bot-command-in-burger: true
   yard:
     start-max-xp: 6
     start-max-loot: 2
