@@ -3,6 +3,8 @@ package ru.game.cat.bot.command;
 import org.junit.jupiter.api.Order;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import ru.game.cat.annotations.CheckEvents;
+import ru.game.cat.bot.command.executors.MilkExecutor;
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.enums.BotCommands;
@@ -13,11 +15,11 @@ import ru.game.cat.service.MilkService;
 @Order(30)
 public class MilkBonusCommand extends AbstractBotCommand {
 
-    private final MilkService milkService;
+    private final MilkExecutor milkExecutor;
 
-    public MilkBonusCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, MilkService milkService) {
+    public MilkBonusCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, MilkExecutor milkExecutor) {
         super(botCommandFactory, messageSender);
-        this.milkService = milkService;
+        this.milkExecutor = milkExecutor;
     }
 
     @Override
@@ -32,6 +34,6 @@ public class MilkBonusCommand extends AbstractBotCommand {
 
     @Override
     public void execute(Update update) {
-        milkService.initForCommand(update);
+        milkExecutor.executeCommand(update);
     }
 }

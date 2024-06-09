@@ -4,8 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.callback.AbstractCallback;
-import ru.game.cat.service.yard.YardExecutor;
-import ru.game.cat.service.yard.YardService;
+import ru.game.cat.bot.command.executors.YardExecutor;
 
 import static ru.game.cat.factory.CallbacksFactory.TEN_MINUTES_YARD_CALLBACK;
 

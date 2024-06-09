@@ -1,4 +1,4 @@
-package ru.game.cat.service.yard;
+package ru.game.cat.bot.command.executors;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -6,15 +6,16 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import ru.game.cat.annotations.CheckEvents;
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
-import ru.game.cat.entity.Sticker;
 import ru.game.cat.entity.Yard;
 import ru.game.cat.enums.StickerNames;
 import ru.game.cat.service.CatService;
 import ru.game.cat.service.SleepService;
 import ru.game.cat.service.StickersService;
+import ru.game.cat.service.yard.YardService;
 import ru.game.cat.utils.ClockUtil;
 import ru.game.cat.utils.Texts;
 
@@ -36,22 +37,13 @@ public class YardExecutor {
     private final CatService catService;
     private final YardService yardService;
     private final MessageSender messageSender;
-    private final SleepService sleepService;
     private final StickersService stickersService;
 
+    @CheckEvents(checkSleep = true, checkEnergy = true)
     public void executeCommand(@NonNull Update update) {
         stickersService.executeSticker(update, stickersService.findById(StickerNames.YARD_STICKER));
         long chatId = update.getMessage().getChatId();
         Cat cat = catService.findActualCat(update);
-        if (sleepService.catIsSleep(cat)) {
-            sleepService.initTimeSleep(update, cat);
-            return;
-        }
-        if (cat.getStatistics().getEnergy() == 0) {
-            messageSender.sendMessage(chatId,
-                    Texts.CAT_TYRED_SLEEP_TEXT + "\n /sleep");
-            return;
-        }
         Yard yard = yardService.getActualYard(cat);
         if (!yard.isInTheWalk()) {
             initInfoText(update);

@@ -43,6 +43,18 @@ public class YardService {
         return getActualYard(cat);
     }
 
+    public Yard getNewYard() {
+        return Yard.builder()
+                .checkDate(LocalDateTime.now().minusYears(100))
+                .maxLoot(maxLoot)
+                .maxXp(maxXp)
+                .currentWalkMinutes(ZERO)
+                .totalWalkMinutes(ZERO)
+                .isInTheWalk(false)
+                .isMeetAdventure(false)
+                .build();
+    }
+
     public Yard getActualYard(@NonNull Cat cat) {
 
         Yard yard = cat.getYard();

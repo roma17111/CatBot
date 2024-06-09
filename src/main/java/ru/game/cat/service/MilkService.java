@@ -2,11 +2,12 @@ package ru.game.cat.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import ru.game.cat.annotations.CheckEvents;
 import ru.game.cat.bot.callback.CallbackQueryExecutor;
 import ru.game.cat.bot.callback.KeyboardGenerator;
 import ru.game.cat.bot.emojy.Emojy;
@@ -40,7 +41,20 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
     private final StatisticService statisticService;
     private final MessageSender messageSender;
     private final MilkBonusGifsFactory bonusStickerFactory;
-    private final SleepService sleepService;
+
+    public void executeCommand(@NonNull Update update) {
+        long chatId = update.getMessage().getChatId();
+        stickersService.executeSticker(update, MILK_STICKER_ID);
+        StringBuilder builder = new StringBuilder(CENTER_MILK_EMOJY + " " + Texts.MILK_INFO_TEXT);
+        Cat cat = catService.findActualCat(update);
+        if (milkIsGot(cat, update)) {
+            builder.append("\n").append("До следующей раздачи \n")
+                    .append(Emojy.CLOCK_EMOJY).append(ClockUtil.getHoursMinutesAndSeconds(LocalDateTime.now(), cat.getMilkBonus().getCheckDate()));
+            messageSender.sendMessage(chatId, builder.toString());
+        } else {
+            messageSender.sendMessageWithKeyboard(chatId, builder.toString(), getKeyboard());
+        }
+    }
 
     public MilkBonus getActualMilkBonus(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
@@ -81,25 +95,6 @@ public class MilkService implements KeyboardGenerator, CallbackQueryExecutor {
         bonus.setCheckDate(LocalDateTime.now().plusHours(bonus.getPeriodPerHour()));
         cat.setMilkBonus(bonus);
         catService.save(cat);
-    }
-
-
-    public void initForCommand(@NonNull Update update) {
-        long chatId = update.getMessage().getChatId();
-        stickersService.executeSticker(update, MILK_STICKER_ID);
-        StringBuilder builder = new StringBuilder(CENTER_MILK_EMOJY + " " + Texts.MILK_INFO_TEXT);
-        Cat cat = catService.findActualCat(update);
-        if (sleepService.catIsSleep(cat)) {
-            sleepService.initTimeSleep(update,cat);
-            return;
-        }
-        if (milkIsGot(cat, update)) {
-            builder.append("\n").append("До следующей раздачи \n")
-                    .append(Emojy.CLOCK_EMOJY).append(ClockUtil.getHoursMinutesAndSeconds(LocalDateTime.now(), cat.getMilkBonus().getCheckDate()));
-            messageSender.sendMessage(chatId, builder.toString());
-        } else {
-            messageSender.sendMessageWithKeyboard(chatId, builder.toString(), getKeyboard());
-        }
     }
 
     public boolean milkIsGot(Cat cat, Update update) {

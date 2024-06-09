@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import ru.game.cat.annotations.CheckEvents;
 import ru.game.cat.bot.callback.CallbackQueryExecutor;
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
@@ -81,11 +82,17 @@ public class SleepService implements CallbackQueryExecutor {
 
 
     public boolean catIsSleep(@NonNull Cat cat) {
+        if (cat.getSleep() == null) {
+            return false;
+        }
+        if (!cat.getSleep().isSleep()) {
+            return false;
+        }
         if (!sleepIsNotFinished(cat)) {
             finishSleep(cat);
             return false;
         }
-        return getActualSleep(cat).isSleep();
+        return true;
     }
 
     public boolean sleepIsNotFinished(@NonNull Cat cat) {
@@ -101,13 +108,10 @@ public class SleepService implements CallbackQueryExecutor {
 
     }
 
+    @CheckEvents(checkYard = true)
     public void executeCommand(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
         stickersService.executeSticker(update, stickersService.findById(SLEEP_STICKER));
-        if (cat.getYard().isInTheWalk()) {
-            messageSender.sendMessage(update.getMessage().getChatId(), CAT_WALK_IN_YARD_TEXT);
-            return;
-        }
         if (isCheckSleep(cat)) {
             initNotSleep(update);
         } else if (!sleepIsNotFinished(cat)) {

@@ -3,6 +3,8 @@ package ru.game.cat.bot.command;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import ru.game.cat.annotations.CheckEvents;
+import ru.game.cat.bot.command.executors.SleepExecutor;
 import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.enums.BotCommands;
@@ -13,11 +15,11 @@ import ru.game.cat.service.SleepService;
 @Order(40)
 public class SleepBotCommand extends AbstractBotCommand {
 
-    private final SleepService sleepService;
+    private final SleepExecutor sleepExecutor;
 
-    public SleepBotCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, SleepService sleepService) {
+    public SleepBotCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, SleepExecutor sleepExecutor) {
         super(botCommandFactory, messageSender);
-        this.sleepService = sleepService;
+        this.sleepExecutor = sleepExecutor;
     }
 
     @Override
@@ -32,6 +34,6 @@ public class SleepBotCommand extends AbstractBotCommand {
 
     @Override
     public void execute(Update update) {
-        sleepService.executeCommand(update);
+        sleepExecutor.executeCommand(update);
     }
 }

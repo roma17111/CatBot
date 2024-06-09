@@ -3,6 +3,7 @@ package ru.game.cat.bot.command;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import ru.game.cat.bot.command.executors.CatExecutor;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.enums.BotCommands;
 import ru.game.cat.factory.BotCommandFactory;
@@ -14,11 +15,11 @@ import static ru.game.cat.bot.emojy.Emojy.CAT_INFO_EMOJY;
 @Order(10)
 public class CatInfoBotCommand extends AbstractBotCommand {
 
-    private final CatInfoService catInfoService;
+    private final CatExecutor catExecutor;
 
-    public CatInfoBotCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, CatInfoService catInfoService) {
+    public CatInfoBotCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, CatExecutor catExecutor) {
         super(botCommandFactory, messageSender);
-        this.catInfoService = catInfoService;
+        this.catExecutor = catExecutor;
     }
 
     @Override
@@ -33,6 +34,6 @@ public class CatInfoBotCommand extends AbstractBotCommand {
 
     @Override
     public void execute(Update update) {
-        catInfoService.initInfo(update);
+        catExecutor.executeCommand(update);
     }
 }

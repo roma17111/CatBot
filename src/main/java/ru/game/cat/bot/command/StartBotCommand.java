@@ -10,7 +10,7 @@ import ru.game.cat.enums.BotCommands;
 import ru.game.cat.factory.BotCommandFactory;
 import ru.game.cat.service.CatService;
 import ru.game.cat.service.StickersService;
-import ru.game.cat.service.yard.YardExecutor;
+import ru.game.cat.bot.command.executors.YardExecutor;
 import ru.game.cat.utils.Texts;
 
 import static ru.game.cat.enums.StickerNames.FIRST_CAT_STICKER;
