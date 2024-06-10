@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CallbacksFactory {
 
+    public static final String MILK_CALLBACK_INVENTORY = "MILK_CALLBACK_INVENTORY";
     public static final String START_LOOT_EXECUTOR = "START_LOOT_EXECUTOR";
     public static final String TAKE_LOOT_YARD_CALLBACK = "TAKE_LOOT_YARD_CALLBACK";
     public static final String TEN_MINUTES_YARD_CALLBACK = "TEN_MINUTES_YARD_CALLBACK";

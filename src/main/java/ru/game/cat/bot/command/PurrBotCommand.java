@@ -1,5 +1,6 @@
 package ru.game.cat.bot.command;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.bot.command.executors.PurrExecutor;
@@ -9,6 +10,7 @@ import ru.game.cat.enums.BotCommands;
 import ru.game.cat.factory.BotCommandFactory;
 
 @Component
+@Order(50)
 public class PurrBotCommand extends AbstractBotCommand {
 
     private final PurrExecutor purrExecutor;

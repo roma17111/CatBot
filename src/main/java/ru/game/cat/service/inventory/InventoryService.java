@@ -119,4 +119,24 @@ public class InventoryService implements CallbackQueryExecutor, KeyboardGenerato
         cat.setInventory(inventory);
         catService.save(cat);
     }
+
+    public void plusMilk(@NonNull Cat cat,
+                           long milk) {
+        Inventory inventory = cat.getInventory();
+        long current = inventory.getMilk();
+        inventory.setMilk(current + milk);
+        cat.setInventory(inventory);
+        catService.save(cat);
+    }
+
+    public void minusMilk(@NonNull Cat cat, long milk) {
+        Inventory inventory = cat.getInventory();
+        long current = inventory.getMilk();
+        if (current < milk) {
+            throw new UnsupportedOperationException(Emojy.CAT_ERROR_EMOJY + " "+NO_TIN_CAN_TEXT);
+        }
+        inventory.setMilk(current - milk);
+        cat.setInventory(inventory);
+        catService.save(cat);
+    }
 }

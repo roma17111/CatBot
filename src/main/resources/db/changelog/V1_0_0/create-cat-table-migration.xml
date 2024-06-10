@@ -68,7 +68,6 @@
             <column name="chat_id" type="BIGINT"/>
         </createIndex>
 
-
         <addForeignKeyConstraint baseTableName="cats"
                                  baseColumnNames="stats_id"
                                  constraintName="STATISTICS_FOREIGN_KEY"

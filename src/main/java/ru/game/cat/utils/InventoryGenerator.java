@@ -43,6 +43,12 @@ public class InventoryGenerator {
                     .text(Emojy.TIN_CAN + inventory.getTinCan())
                     .build());
         }
+        if (inventory.getMilk() > 0) {
+            listButtons.add(InlineKeyboardButton.builder()
+                    .callbackData(MILK_CALLBACK_INVENTORY)
+                    .text(Emojy.MILK_EMOJY+inventory.getMilk())
+                    .build());
+        }
     }
 
     public InlineKeyboardMarkup generateKeyboard() throws InventoryIsEmptyException {
