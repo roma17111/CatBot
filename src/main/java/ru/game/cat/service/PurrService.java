@@ -11,6 +11,7 @@ import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Purr;
+import ru.game.cat.enums.StickerNames;
 import ru.game.cat.service.purr.CatCoinsLootExecutor;
 import ru.game.cat.service.purr.MilkLootExecutor;
 import ru.game.cat.service.purr.PurrInventoryExecutor;
@@ -36,6 +37,7 @@ public class PurrService {
 
     private final MessageSender messageSender;
     private final CatService catService;
+    private final StickersService stickersService;
 
     private Purr getActualPurr(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
@@ -69,6 +71,7 @@ public class PurrService {
     }
 
     public void executeCommand(@NonNull Update update) {
+        stickersService.executeSticker(update, stickersService.findById(StickerNames.PURR_COMMAND));
         Purr purr = getActualPurr(update);
         long chatId = update.getMessage().getChatId();
         if (purrAreReady(purr)) {
@@ -125,7 +128,7 @@ public class PurrService {
         return markup;
     }
 
-    private boolean purrAreReady(@NonNull Purr purr) {
+    private boolean purrAreReady(Purr purr) {
         System.out.println(purr);
         if (purr == null) {
             return true;

@@ -53,5 +53,11 @@
             <column name="price"  value="0"/>
             <column name="path"  value="stickers/sleep/643524467607209894.webp"/>
         </insert>
+        <insert tableName="stickers">
+            <column name="sticker_id" value="PURR_COMMAND"/>
+            <column name="name"  value="Стикер мурчания"/>
+            <column name="price"  value="0"/>
+            <column name="path"  value="stickers/purr/2737268664460902475.tgs"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

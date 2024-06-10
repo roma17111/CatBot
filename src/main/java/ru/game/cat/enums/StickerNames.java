@@ -4,5 +4,6 @@ public enum StickerNames {
 
     FIRST_CAT_STICKER,
     YARD_STICKER,
-    SLEEP_STICKER;
+    SLEEP_STICKER,
+    PURR_COMMAND;
 }
