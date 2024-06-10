@@ -87,6 +87,10 @@ public class Cat {
     @JoinColumn(name = "sleep_id")
     private Sleep sleep;
 
+    @OneToOne
+    @JoinColumn(name = "purr_id")
+    private Purr purr;
+
     public long getPercent() {
         double divided = (double) this.xpFromLevel / this.necessaryXpForUp;
         return (long) (divided * HUNDRED);

@@ -88,6 +88,8 @@ public class Texts {
             "принёс ли он чего-нибудь \n\n" +
             "/yard";
 
+    public static final String MURR_QUESTION = CAT + "Что хотите получить" + QUESTION_EMOJY;
+
     public static String formatLoot(Inventories inventories, long amount) {
         return String.format("%s %s<b>%s</b> + %d",
                 Emojy.DOT_EMOJY,

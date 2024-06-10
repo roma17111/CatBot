@@ -28,6 +28,10 @@
             <column name="tin_can" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="milk" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

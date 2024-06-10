@@ -29,7 +29,7 @@ public class SleepBotCommand extends AbstractBotCommand {
 
     @Override
     public String getDescription() {
-        return Emojy.BED_EMOJY + " " + BotCommands.SLEEP.getDescription();
+        return Emojy.ZZZ_EMOJY + " " + BotCommands.SLEEP.getDescription();
     }
 
     @Override

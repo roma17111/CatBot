@@ -35,11 +35,9 @@ public class CheckEventsAspect {
 
     @Around("@annotation(param)")
     public Object beforeCommandCheckEvents(ProceedingJoinPoint pjp, CheckEvents param) throws Throwable {
-        System.out.println("test");
         for (Object arg : pjp.getArgs()) {
             if (arg instanceof Update update) {
                 try {
-                    System.out.println("test");
                     check(param, update);
                 } catch (CatAreSleepingException |
                          EnergyIsEmptyException |

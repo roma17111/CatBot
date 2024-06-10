@@ -28,4 +28,7 @@ public class Inventory {
 
     @Column(name = "tin_can", nullable = false)
     private long tinCan = ZERO;
+
+    @Column(name = "milk", nullable = false)
+    private long milk = 0;
 }

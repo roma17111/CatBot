@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-purr-table.0" author="Roman Yakimenko">
+
+        <preConditions>
+            <not>
+                <tableExists tableName="purrs"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="purrs">
+
+            <column name="purr_id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="true" primaryKey="true"/>
+            </column>
+
+            <column name="count_purrs" type="BIGINT" >
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="check_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="hours_interval" type="INT"/>
+        </createTable>
+
+        <addColumn tableName="cats">
+            <column name="purr_id" type="BIGINT"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="cats"
+                                 baseColumnNames="purr_id"
+                                 constraintName="PURR_FOREIGN_KEY"
+                                 referencedTableName="purrs"
+                                 referencedColumnNames="purr_id"/>
+
+
+    </changeSet>
+</databaseChangeLog>
