@@ -90,6 +90,8 @@ public class Texts {
 
     public static final String MURR_QUESTION = CAT + "Что хотите получить" + QUESTION_EMOJY;
 
+    public static final String MURR_GET_TEXT = CAT + " Мурр, посмотри, что ты получил" + SMILE;
+
     public static String formatLoot(Inventories inventories, long amount) {
         return String.format("%s %s<b>%s</b> + %d",
                 Emojy.DOT_EMOJY,

@@ -87,7 +87,7 @@ public class Cat {
     @JoinColumn(name = "sleep_id")
     private Sleep sleep;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "purr_id")
     private Purr purr;
 

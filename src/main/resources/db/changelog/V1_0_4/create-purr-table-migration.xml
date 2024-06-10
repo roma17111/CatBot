@@ -27,6 +27,8 @@
             </column>
 
             <column name="hours_interval" type="INT"/>
+
+            <column name="max_poor_loot" type="BIGINT"/>
         </createTable>
 
         <addColumn tableName="cats">

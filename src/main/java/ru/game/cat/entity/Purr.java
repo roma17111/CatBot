@@ -29,4 +29,7 @@ public class Purr {
 
     @Column(name = "hours_interval", nullable = false)
     private int hoursInterval;
+
+    @Column(name = "max_poor_loot",nullable = false)
+    private long maxPurrLoot = 0;
 }
