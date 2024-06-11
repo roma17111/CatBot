@@ -25,6 +25,7 @@ public class StartBotCommand extends AbstractBotCommand {
     private final YardExecutor yardExecutor;
 
     private final StickersService stickersService;
+
     public StartBotCommand(BotCommandFactory botCommandFactory, MessageSender messageSender, MessageSender messageSender1, CatService catService, YardExecutor yardExecutor, StickersService stickersService) {
         super(botCommandFactory, messageSender);
         this.messageSender = messageSender1;
@@ -46,10 +47,9 @@ public class StartBotCommand extends AbstractBotCommand {
     @SneakyThrows
     @Override
     public void execute(Update update) {
-
         Cat cat = catService.findActualCat(update);
         if (cat == null) {
-            stickersService.executeSticker(update,stickersService.findById(FIRST_CAT_STICKER));
+            stickersService.executeSticker(update, stickersService.findById(FIRST_CAT_STICKER));
             cat = catService.registerCat(update);
             messageSender.sendMessage(update.getMessage().getChatId(), Texts.REG_TEXT);
             messageSender.sendMessage(update.getMessage().getChatId(), "Меня зовут - " + cat.getCatName());

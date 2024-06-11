@@ -17,14 +17,9 @@
                 <constraints primaryKey="true"/>
             </column>
 
-            <column name="max_games" type="BIGINT">
+            <column name="remains_games" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-
-            <column name="total_games" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-
         </createTable>
 
         <addColumn tableName="statistics">

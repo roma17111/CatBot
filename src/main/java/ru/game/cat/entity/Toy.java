@@ -21,11 +21,7 @@ public class Toy {
     @Column(name = "toy_id",nullable = false)
     private UUID uuid;
 
-    @Column(name = "max_games",nullable = false)
-    private long maxGames = 15;
-
-    @Column(name = "total_games", nullable = false)
+    @Column(name = "remains_games", nullable = false)
     private long totalGames = 0;
-
 
 }

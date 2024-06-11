@@ -116,7 +116,6 @@ public class MessageSender extends DefaultAbsSender {
     public void sendAnimation(long chatId, String fileId) {
         SendAnimation animation = SendAnimation.builder()
                 .chatId(chatId)
-                .chatId(chatId)
                 .animation(new InputFile(fileId))
                 .build();
         executeAsync(animation);

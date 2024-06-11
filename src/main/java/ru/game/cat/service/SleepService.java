@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ru.game.cat.enums.StickerNames.SLEEP_STICKER;
+import static ru.game.cat.enums.StickerNames.SLEEP_STICKER_ADVANCED;
 import static ru.game.cat.factory.CallbacksFactory.SLEEP_STREET_CALLBACK;
 import static ru.game.cat.utils.Texts.*;
 
@@ -111,7 +112,7 @@ public class SleepService implements CallbackQueryExecutor {
     @CheckEvents(checkYard = true)
     public void executeCommand(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
-        stickersService.executeSticker(update, stickersService.findById(SLEEP_STICKER));
+        stickersService.executeSticker(update, stickersService.findById(SLEEP_STICKER_ADVANCED));
         if (isCheckSleep(cat)) {
             initNotSleep(update);
         } else if (!sleepIsNotFinished(cat)) {

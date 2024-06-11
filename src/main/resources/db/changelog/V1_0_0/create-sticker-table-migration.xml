@@ -53,11 +53,42 @@
             <column name="price"  value="0"/>
             <column name="path"  value="stickers/sleep/643524467607209894.webp"/>
         </insert>
+
         <insert tableName="stickers">
             <column name="sticker_id" value="PURR_COMMAND"/>
             <column name="name"  value="Стикер мурчания"/>
             <column name="price"  value="0"/>
             <column name="path"  value="stickers/purr/2737268664460902475.tgs"/>
         </insert>
+
+        <insert tableName="stickers">
+            <column name="sticker_id" value="SLEEP_STICKER_ADVANCED"/>
+            <column name="name"  value="Усовершенствованный стикер сна"/>
+            <column name="price"  value="0"/>
+            <column name="path"  value="stickers/sleep/5282786564076739562.tgs"/>
+        </insert>
+
+        <insert tableName="stickers">
+            <column name="sticker_id" value="MAIN_TOY_STICKER"/>
+            <column name="name"  value="Play game 1"/>
+            <column name="price"  value="0"/>
+            <column name="path"  value="stickers/toy/2737268664460902477.tgs"/>
+        </insert>
+
+        <insert tableName="stickers">
+            <column name="sticker_id" value="PLAY_TOY_ONE"/>
+            <column name="name"  value="Play toy 1"/>
+            <column name="price"  value="0"/>
+            <column name="path"  value="stickers/toy/5276270733616487427.tgs"/>
+        </insert>
+
+        <insert tableName="stickers">
+            <column name="sticker_id" value="PLAY_TOY_TWO"/>
+            <column name="name"  value="Play toy 2"/>
+            <column name="price"  value="0"/>
+            <column name="path"  value="stickers/toy/5278627283387552866.tgs"/>
+        </insert>
+
+
     </changeSet>
 </databaseChangeLog>
