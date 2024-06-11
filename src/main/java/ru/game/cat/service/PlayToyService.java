@@ -15,11 +15,9 @@ import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Inventory;
-import ru.game.cat.entity.Statistics;
 import ru.game.cat.entity.Toy;
 import ru.game.cat.enums.BotCommands;
 import ru.game.cat.enums.StickerNames;
-import ru.game.cat.factory.CallbacksFactory;
 import ru.game.cat.repository.ToyRepository;
 import ru.game.cat.service.purr.CatCoinsLootExecutor;
 import ru.game.cat.service.yard.loot.XPLootExecutor;
@@ -45,6 +43,7 @@ public class PlayToyService {
     private final MessageSender messageSender;
     private final CatCoinsLootExecutor catCoinsLootExecutor;
     private final XPLootExecutor xpLootExecutor;
+    private final StatisticService statisticService;
 
     @Value("${bot.toy.max-random-xp}")
     private int maxRandomXp;
@@ -119,7 +118,7 @@ public class PlayToyService {
     public void playGameCallback(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
         if (!cat.hasToy()) {
-            messageSender.sendAlert(update,Emojy.CAT_ERROR_EMOJY+" Котик, у тебя нет игрушки");
+            messageSender.sendAlert(update, Emojy.CAT_ERROR_EMOJY + " Котик, у тебя нет игрушки");
             return;
         }
         long chatId = update.getCallbackQuery().getMessage().getChatId();
@@ -158,10 +157,9 @@ public class PlayToyService {
         }
         long randomEnergy = RandomUtils.getRandomNumber(minRandomEnergy, maxRandomEnergy);
         long randomSatiety = RandomUtils.getRandomNumber(minRandomSatiety, maxRandomSatiety);
-        Statistics statistics = cat.getStatistics();
-        statistics.setEnergy((int) (statistics.getEnergy() - randomEnergy));
-        statistics.setSatiety((int) (statistics.getSatiety() - randomSatiety));
-        cat.setStatistics(statistics);
+
+        statisticService.minusEnergy(cat, (int) randomEnergy);
+        statisticService.minusSatiety(cat, (int) randomSatiety);
         catService.save(cat);
     }
 
