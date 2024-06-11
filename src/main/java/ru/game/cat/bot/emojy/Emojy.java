@@ -47,5 +47,5 @@ public class Emojy {
     public static final String STREET_EMOJY = "\uD83D\uDEE3\uFE0F";
     public static final String PURR_EMOJY = "\uD83D\uDDE3\uFE0F";
     public static final String TOY_EMOJY = "\uD83E\uDE80";
-
+    public static final String GLOOMY_EMOJY = "\uD83D\uDE14";
 }

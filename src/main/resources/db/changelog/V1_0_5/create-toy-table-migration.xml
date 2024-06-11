@@ -28,11 +28,11 @@
             </column>
         </addColumn>
 
-        <addColumn tableName="cats">
+        <addColumn tableName="inventories">
             <column name="toy_id" type="uuid"/>
         </addColumn>
 
-        <addForeignKeyConstraint baseTableName="cats"
+        <addForeignKeyConstraint baseTableName="inventories"
                                  baseColumnNames="toy_id"
                                  constraintName="TOY_FOREIGN_KEY"
                                  referencedTableName="toys"

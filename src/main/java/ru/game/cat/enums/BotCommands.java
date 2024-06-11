@@ -13,7 +13,8 @@ public enum BotCommands {
     MILK("milk", "Молочко"),
     YARD("yard", "Во двор"),
     SLEEP("sleep", "Сон"),
-    PURR("purr", "Помурчать");
+    PURR("purr", "Помурчать"),
+    TOY("toy", "Поиграть с игрушкой");
 
     private final String command;
     private final String description;

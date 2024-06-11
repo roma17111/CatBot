@@ -31,4 +31,13 @@ public class Inventory {
 
     @Column(name = "milk", nullable = false)
     private long milk = 0;
+
+    @OneToOne(cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+    })
+    @JoinColumn(name = "toy_id")
+    private Toy toy;
 }

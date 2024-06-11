@@ -91,14 +91,6 @@ public class Cat {
     @JoinColumn(name = "purr_id")
     private Purr purr;
 
-    @OneToOne(cascade = {
-            CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.REFRESH,
-            CascadeType.PERSIST
-    })
-    @JoinColumn(name = "toy_id")
-    private Toy toy;
 
     public long getPercent() {
         double divided = (double) this.xpFromLevel / this.necessaryXpForUp;
