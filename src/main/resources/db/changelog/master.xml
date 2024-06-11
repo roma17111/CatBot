@@ -13,4 +13,5 @@
     <include file="db/changelog/V1_0_2/create-yerd-table-migration.xml"/>
     <include file="db/changelog/V1_0_3/create-sleep-table-migration.xml"/>
     <include file="db/changelog/V1_0_4/create-purr-table-migration.xml"/>
+    <include file="db/changelog/V1_0_5/create-toy-table-migration.xml"/>
 </databaseChangeLog>

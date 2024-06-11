@@ -41,6 +41,7 @@ public class CatService {
                 .level(1)
                 .statistics(Statistics.builder()
                         .happiness(20)
+                        .playsToy(0)
                         .health(20)
                         .satiety(20)
                         .energy(20)

@@ -13,7 +13,8 @@ public enum Inventories {
     TIN_CAN(Emojy.TIN_CAN, "Консервная банка"),
     MILK(Emojy.MILK_EMOJY, "Молочко"),
     XP(Emojy.LEVEL, "Опыт"),
-    CAT_COIN(Emojy.CAT_COINS, "Cat coins");
+    CAT_COIN(Emojy.CAT_COINS, "Cat coins"),
+    TOY(Emojy.THINK_EMOJY,"Игрушка");
 
     private final String emoji;
     private final String name;

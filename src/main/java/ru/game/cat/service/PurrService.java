@@ -1,6 +1,5 @@
 package ru.game.cat.service;
 
-import jakarta.persistence.Column;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,8 +11,6 @@ import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Purr;
 import ru.game.cat.enums.StickerNames;
-import ru.game.cat.service.purr.CatCoinsLootExecutor;
-import ru.game.cat.service.purr.MilkLootExecutor;
 import ru.game.cat.service.purr.PurrInventoryExecutor;
 import ru.game.cat.utils.ClockUtil;
 import ru.game.cat.utils.RandomUtils;
@@ -136,12 +133,10 @@ public class PurrService {
         var start = LocalDateTime.now();
         var end = purr.getCheckDate();
         long seconds = Duration.between(start, end).toSeconds();
-        System.out.println(seconds);
         if (seconds <= 0) {
             return true;
         }
         long l = purr.getHoursInterval() * 60L * 60L;
-        System.out.println(l);
         return seconds > (l);
     }
 

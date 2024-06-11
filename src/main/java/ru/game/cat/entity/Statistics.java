@@ -49,6 +49,9 @@ public class Statistics {
     @Column(name = "max_energy", nullable = false)
     private int maxEnergy = 0;
 
+    @Column(name = "plays_toy", nullable = false)
+    private int playsToy = 0;
+
     public String getInfo() {
         return String.format("""
                         <b>Показатели кошкатуна</b>

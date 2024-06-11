@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-toy-table.0" author="Roman Yakimenko">
+
+        <preConditions>
+            <not>
+                <tableExists tableName="toys"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="toys">
+            <column name="toy_id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="max_games" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="total_games" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <addColumn tableName="statistics">
+            <column name="plays_toy" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+        <addColumn tableName="cats">
+            <column name="toy_id" type="uuid"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="cats"
+                                 baseColumnNames="toy_id"
+                                 constraintName="TOY_FOREIGN_KEY"
+                                 referencedTableName="toys"
+                                 referencedColumnNames="toy_id"/>
+
+    </changeSet>
+</databaseChangeLog>
