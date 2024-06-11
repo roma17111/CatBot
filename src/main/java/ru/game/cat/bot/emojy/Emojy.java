@@ -48,4 +48,7 @@ public class Emojy {
     public static final String PURR_EMOJY = "\uD83D\uDDE3\uFE0F";
     public static final String TOY_EMOJY = "\uD83E\uDE80";
     public static final String GLOOMY_EMOJY = "\uD83D\uDE14";
+    public static final String GAME_CUBE_EMOJY = "\uD83C\uDFB2";
+    public static final String TOTAL_EMOJY = "\uD83E\uDDEE";
+    public static final String PLAY_GAME_EMOJY = "\uD83D\uDD79\uFE0F";
 }

@@ -91,8 +91,9 @@ public class Texts {
     public static final String MURR_QUESTION = CAT + "Что хотите получить" + QUESTION_EMOJY;
 
     public static final String MURR_GET_TEXT = CAT + " Мурр, посмотри, что ты получил" + SMILE;
-
     public static final String TOY_NOT_FOUND_TEXT = CAT_ERROR_EMOJY + "Котик, у тебя нет игрушки" + GLOOMY_EMOJY + "\n\n";
+    public static final String BREAK_TOY_TEXT = GLOOMY_EMOJY + "ОЙ! Котик, кажется, у тебя сломалась игрушка";
+    public static final String SUCCESSFULLY_FIND_TOY_TEXT = GAME_CUBE_EMOJY + " Кажется " + CAT + " котик нашёл игрушку";
 
 
     public static String formatLoot(Inventories inventories, long amount) {

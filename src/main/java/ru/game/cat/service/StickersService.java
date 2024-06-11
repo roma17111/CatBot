@@ -24,8 +24,14 @@ public class StickersService {
 
     @SneakyThrows
     public void executeSticker(Update update, Sticker sticker) {
+        long chatId = 0;
+        if (update.hasCallbackQuery()) {
+            chatId = update.getCallbackQuery().getMessage().getChatId();
+        } else {
+            chatId = update.getMessage().getChatId();
+        }
         SendSticker sendSticker = new SendSticker();
-        sendSticker.setChatId(update.getMessage().getChatId());
+        sendSticker.setChatId(chatId);
         if (sticker.getFileId() == null) {
             sendSticker.setSticker(new InputFile(new File(sticker.getPath())));
             var result = messageSender.executeAsync(sendSticker);

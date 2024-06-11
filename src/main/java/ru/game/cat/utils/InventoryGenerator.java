@@ -49,6 +49,12 @@ public class InventoryGenerator {
                     .text(Emojy.MILK_EMOJY+inventory.getMilk())
                     .build());
         }
+        if (inventory.getToy()!=null) {
+            listButtons.add(InlineKeyboardButton.builder()
+                    .callbackData(INVENTORY_MAIN_TOY_CALLBACK)
+                    .text(Emojy.TOY_EMOJY)
+                    .build());
+        }
     }
 
     public InlineKeyboardMarkup generateKeyboard() throws InventoryIsEmptyException {

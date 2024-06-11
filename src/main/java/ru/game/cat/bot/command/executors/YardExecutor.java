@@ -1,7 +1,10 @@
 package ru.game.cat.bot.command.executors;
 
+import jakarta.annotation.PostConstruct;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.BeanCreationException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -13,10 +16,12 @@ import ru.game.cat.entity.Cat;
 import ru.game.cat.entity.Yard;
 import ru.game.cat.enums.StickerNames;
 import ru.game.cat.service.CatService;
+import ru.game.cat.service.PlayToyService;
 import ru.game.cat.service.SleepService;
 import ru.game.cat.service.StickersService;
 import ru.game.cat.service.yard.YardService;
 import ru.game.cat.utils.ClockUtil;
+import ru.game.cat.utils.RandomUtils;
 import ru.game.cat.utils.Texts;
 
 import java.time.LocalDateTime;
@@ -38,6 +43,17 @@ public class YardExecutor {
     private final YardService yardService;
     private final MessageSender messageSender;
     private final StickersService stickersService;
+    private final PlayToyService toyService;
+
+    @Value("${bot.yard.toy-random-range}")
+    private int toyRandomRange;
+
+    @PostConstruct
+    public void init() {
+        if (toyRandomRange<1||toyRandomRange>=200) {
+            throw new BeanCreationException("Random range для игрушки должен находиться в диапазоне 1-200");
+        }
+    }
 
     @CheckEvents(checkSleep = true, checkEnergy = true)
     public void executeCommand(@NonNull Update update) {
@@ -141,12 +157,17 @@ public class YardExecutor {
         } else {
             String text = SEARCH_EMOJY + " Посмотри, что ты сегодня нашёл\n\n"
                     + yardService.getLoot(cat, update);
+
             yardService.finishWalk(cat);
             messageSender.deleteMessage(
                     update.getCallbackQuery().getMessage().getChatId(),
                     update.getCallbackQuery().getMessage().getMessageId()
             );
             messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(), text);
+            long random = RandomUtils.getRandomNumber(200);
+            if (random > toyRandomRange) {
+                toyService.initFindToyEvent(update, cat);
+            }
         }
     }
 

@@ -8,11 +8,13 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.game.cat.annotations.CheckEvents;
+import ru.game.cat.bot.emojy.Emojy;
 import ru.game.cat.bot.message.MessageSender;
 import ru.game.cat.entity.Cat;
 import ru.game.cat.enums.StickerNames;
 import ru.game.cat.exceptions.CatAreSleepingException;
 import ru.game.cat.exceptions.CatInYardException;
+import ru.game.cat.exceptions.CatIsHungryException;
 import ru.game.cat.exceptions.EnergyIsEmptyException;
 import ru.game.cat.service.CatService;
 import ru.game.cat.service.SleepService;
@@ -41,6 +43,7 @@ public class CheckEventsAspect {
                     check(param, update);
                 } catch (CatAreSleepingException |
                          EnergyIsEmptyException |
+                         CatIsHungryException |
                          CatInYardException e) {
                     return pjp.getThis();
                 }
@@ -51,7 +54,7 @@ public class CheckEventsAspect {
 
     }
 
-    private void check(CheckEvents param, @NonNull Update update) throws CatAreSleepingException, EnergyIsEmptyException, CatInYardException {
+    private void check(CheckEvents param, @NonNull Update update) throws CatAreSleepingException, EnergyIsEmptyException, CatInYardException, CatIsHungryException {
         Cat cat = catService.findActualCat(update);
 
         if (param.checkSleep() && sleepService.catIsSleep(cat)) {
@@ -70,6 +73,10 @@ public class CheckEventsAspect {
         if (param.checkYard() && cat.getYard().isInTheWalk()) {
             messageSender.sendMessage(update.getMessage().getChatId(), CAT_WALK_IN_YARD_TEXT);
             throw new CatInYardException();
+        }
+        if (param.checkSatiety() && cat.getStatistics().getSatiety() < 5) {
+            messageSender.sendMessage(update.getMessage().getChatId(), Emojy.GLOOMY_EMOJY + Emojy.CAT + " Котик сильно голоден");
+            throw new CatIsHungryException();
         }
     }
 }

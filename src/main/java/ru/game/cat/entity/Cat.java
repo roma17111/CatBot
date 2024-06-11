@@ -91,6 +91,12 @@ public class Cat {
     @JoinColumn(name = "purr_id")
     private Purr purr;
 
+    public boolean hasToy() {
+        if (inventory == null) {
+            return false;
+        }
+        return inventory.getToy() != null;
+    }
 
     public long getPercent() {
         double divided = (double) this.xpFromLevel / this.necessaryXpForUp;

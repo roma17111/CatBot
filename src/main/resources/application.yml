@@ -1,6 +1,14 @@
 bot:
   enable-start-bot-command-in-burger: true
+  toy:
+    max-random-xp: 10
+    max-random-cash: 3
+    min-random-energy: 10
+    min-random-satiety: 10
+    max-random-satiety: 25
+    max-random-energy: 25
   yard:
+    toy-random-range: 1 # Чем число меньше 200, тем чаще во дворе будут появляться игрушки
     start-max-xp: 6
     start-max-loot: 2
   inventory:

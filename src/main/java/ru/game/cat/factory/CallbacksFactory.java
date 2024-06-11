@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CallbacksFactory {
 
+    public static final String PLAY_TOY_CALLBACK = "PLAY_TOY_CALLBACK";
     public static final String INVENTORY_MAIN_TOY_CALLBACK = "INVENTORY_MAIN_TOY_CALLBACK";
     public static final String MILK_PURR_CALLBACK = "MILK_PURR_CALLBACK";
     public static final String CAT_COIN_PURR_CALLBACK = "CAT_COIN_PURR_CALLBACK";

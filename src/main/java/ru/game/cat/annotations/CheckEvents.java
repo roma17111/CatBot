@@ -10,4 +10,6 @@ public @interface CheckEvents {
     boolean checkSleep() default false;
     boolean checkEnergy() default false;
     boolean checkYard() default false;
+    boolean checkSatiety() default false;
+
 }
