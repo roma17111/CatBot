@@ -70,7 +70,7 @@ public class PlayToyService {
     public void init() {
         if (minRandomEnergy >= maxRandomEnergy) {
             throw new BeanCreationException("Минимальная энергия не должна быть больше максимальной");
-        } else if (minRandomSatiety>= maxRandomSatiety){
+        } else if (minRandomSatiety >= maxRandomSatiety) {
             throw new BeanCreationException("Минимальная сытость не может быть больше максимальной");
         }
     }
@@ -118,6 +118,10 @@ public class PlayToyService {
     @Transactional
     public void playGameCallback(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
+        if (!cat.hasToy()) {
+            messageSender.sendAlert(update,Emojy.CAT_ERROR_EMOJY+" Котик, у тебя нет игрушки");
+            return;
+        }
         long chatId = update.getCallbackQuery().getMessage().getChatId();
         long messageId = update.getCallbackQuery().getMessage().getMessageId();
         messageSender.deleteMessage(chatId, messageId);
@@ -165,7 +169,8 @@ public class PlayToyService {
         Toy toy = addToyToCat(update, cat);
         messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(),
                 SUCCESSFULLY_FIND_TOY_TEXT + "\n" +
-                        TOTAL_EMOJY + " <b>Количество игр </b> - " + toy.getTotalGames());
+                        TOTAL_EMOJY + " <b>Количество игр </b> - " + toy.getTotalGames() + "\n"
+                        + Emojy.PLAY_GAME_EMOJY + " Поиграть с игрушкой - /" + BotCommands.TOY.getCommand());
     }
 
     public Toy addToyToCat(@NonNull Update update, @NonNull Cat cat) {
