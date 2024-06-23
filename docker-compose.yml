@@ -6,7 +6,7 @@ services:
     container_name: cat-bot
     restart: always
     environment:
-      - DB_URL=jdbc:postgresql://10.100.13.46/cat-bot
+      - DB_URL=jdbc:postgresql://10.100.13.46:5000/cat-bot
       - DB_USERNAME=user
       - DB_PASSWORD=69701
       - BOT_USERNAME=cat_test_dev_bot
