@@ -8,7 +8,7 @@ bot:
     max-random-satiety: 25
     max-random-energy: 25
   yard:
-    toy-random-range: 1 # Чем число меньше 200, тем чаще во дворе будут появляться игрушки
+    toy-random-range: 150 # Чем число меньше 200, тем чаще во дворе будут появляться игрушки
     start-max-xp: 6
     start-max-loot: 2
   inventory:
