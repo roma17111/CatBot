@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.game.cat.bot.emojy.Emojy.*;
 import static ru.game.cat.enums.StickerNames.SLEEP_STICKER;
 import static ru.game.cat.enums.StickerNames.SLEEP_STICKER_ADVANCED;
 import static ru.game.cat.factory.CallbacksFactory.SLEEP_STREET_CALLBACK;
@@ -142,8 +143,8 @@ public class SleepService implements CallbackQueryExecutor {
         LocalDateTime start = LocalDateTime.now();
         LocalDateTime end = getActualSleep(cat).getCheckDate();
         messageSender.sendMessage(update.getMessage().getChatId(),
-                Texts.CAT_IS_SLEEP_TEXT + "\n" +
-                        "Осталось спать \n" + ClockUtil.getHoursMinutesAndSeconds(start, end));
+                Texts.CAT_IS_SLEEP_TEXT + "\n" + ZZZ_EMOJY +
+                        " Осталось спать \n" + CLOCK_EMOJY + " " + ClockUtil.getHoursMinutesAndSeconds(start, end));
     }
 
     @Override

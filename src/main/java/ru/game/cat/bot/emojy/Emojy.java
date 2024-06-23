@@ -51,4 +51,5 @@ public class Emojy {
     public static final String GAME_CUBE_EMOJY = "\uD83C\uDFB2";
     public static final String TOTAL_EMOJY = "\uD83E\uDDEE";
     public static final String PLAY_GAME_EMOJY = "\uD83D\uDD79\uFE0F";
+
 }
