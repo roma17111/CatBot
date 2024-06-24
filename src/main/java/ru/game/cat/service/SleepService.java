@@ -2,6 +2,7 @@ package ru.game.cat.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -36,6 +37,9 @@ public class SleepService implements CallbackQueryExecutor {
     private final MessageSender messageSender;
     private final StickersService stickersService;
 
+    @Value("${bot.sleep.default-minutes}")
+    private int defaultMinutes;
+
     public Sleep getActualSleep(Cat cat) {
         Sleep sleep = cat.getSleep();
         if (sleep == null) {
@@ -44,7 +48,7 @@ public class SleepService implements CallbackQueryExecutor {
                     .amountSleeps(0)
                     .checkDate(LocalDateTime.now().minusYears(100))
                     .energyAfterSleep(50)
-                    .minutesForSleep(120)
+                    .minutesForSleep(defaultMinutes)
                     .build();
             cat.setSleep(sleep);
             catService.save(cat);

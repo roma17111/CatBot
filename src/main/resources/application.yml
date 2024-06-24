@@ -1,4 +1,6 @@
 bot:
+  sleep:
+    default-minutes: 90 #Начальное время сна, за которое будет спать котик на улице
   enable-start-bot-command-in-burger: true
   toy:
     max-random-xp: 10
