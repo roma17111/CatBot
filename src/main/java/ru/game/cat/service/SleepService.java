@@ -114,7 +114,7 @@ public class SleepService implements CallbackQueryExecutor {
 
     }
 
-    @CheckEvents(checkYard = true)
+
     public void executeCommand(@NonNull Update update) {
         Cat cat = catService.findActualCat(update);
         stickersService.executeSticker(update, stickersService.findById(SLEEP_STICKER_ADVANCED));

@@ -13,7 +13,6 @@ public class SleepExecutor {
 
     private final SleepService sleepService;
 
-
     public void executeCommand(@NonNull Update update) {
         sleepService.executeCommand(update);
     }
