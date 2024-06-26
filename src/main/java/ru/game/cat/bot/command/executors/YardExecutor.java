@@ -50,7 +50,7 @@ public class YardExecutor {
 
     @PostConstruct
     public void init() {
-        if (toyRandomRange<1||toyRandomRange>=200) {
+        if (toyRandomRange < 1 || toyRandomRange >= 200) {
             throw new BeanCreationException("Random range для игрушки должен находиться в диапазоне 1-200");
         }
     }
@@ -165,7 +165,7 @@ public class YardExecutor {
             );
             messageSender.sendMessage(update.getCallbackQuery().getMessage().getChatId(), text);
             long random = RandomUtils.getRandomNumber(200);
-            if (random > toyRandomRange) {
+            if (random > toyRandomRange && !cat.hasToy()) {
                 toyService.initFindToyEvent(update, cat);
             }
         }
